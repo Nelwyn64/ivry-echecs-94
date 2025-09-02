@@ -1,0 +1,12 @@
+title: "Ivry Échecs 94"
+description: "Club d'échecs à Ivry-sur-Seine : initiation, progression, convivialité et compétitions."
+
+# Domaine principal (sans slash final)
+url: "https://nelwyn64.github.io"
+# Chemin du projet (avec slash au début)
+baseurl: "/site-Ivry-Echecs"
+
+markdown: kramdown
+exclude:
+  - node_modules
+  - README.md

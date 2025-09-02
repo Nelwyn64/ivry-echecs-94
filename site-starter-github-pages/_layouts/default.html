@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.meta_description | default: site.description }}">
+
+  <!-- Styles généraux -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/styles.css?v={{ site.time | date: '%s' }}">
+
+  <!-- Typographie (chargée APRÈS pour écraser styles.css) -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/css/typography.css?v={{ site.time | date: '%s' }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/favicon.svg">
+</head>
+<body class="{% if page.bg_image %}has-bg{% endif %}">
+
+  {% if page.bg_image %}
+    <div class="page-bg" style="background-image:url('{{ site.baseurl }}/assets/{{ page.bg_image }}')"></div>
+  {% endif %}
+
+  {% include header.html %}
+
+  <main id="contenu">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+  <script>
+  (function(){
+    const btn = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if(!btn || !nav) return;
+
+    function toggleNav(){
+      const open = nav.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    }
+
+    btn.addEventListener('click', toggleNav);
+
+    nav.addEventListener('click', (e)=>{
+      const a = e.target.closest('a');
+      if(a && nav.classList.contains('is-open')) toggleNav();
+    });
+
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && nav.classList.contains('is-open')) toggleNav();
+    });
+  })();
+</script>
+</body>
+</html>
