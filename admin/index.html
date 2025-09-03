@@ -4,30 +4,66 @@
   <meta charset="utf-8" />
   <title>Ivry Échecs 94 — Admin</title>
 
-  <!-- Charge Decap CMS -->
-  <script src="https://unpkg.com/decap-cms/dist/decap-cms.js"></script>
+  <!-- Decap CMS : épinglé sur une version stable -->
+  <script src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"></script>
 
-
-  <!-- Charge Netlify Identity (authentification) -->
+  <!-- Netlify Identity (authentification) -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-  <!-- Indique où se trouve le fichier de config -->
   <script>
+    // 1) Initialisation du CMS + chemin du config.yml
     CMS.init({ configPath: 'config.yml' });
 
-    // Redirige automatiquement vers /admin après login
+    // 2) Gestion login Identity : si pas loggé -> on ouvre le widget,
+    //    et après login on revient sur /admin/
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
+      window.netlifyIdentity.on('init', (user) => {
         if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
+          // Ouvre la pop-up de login si rien ne s’affiche
+          // (utile quand le widget n’apparaît pas tout seul)
+          // window.netlifyIdentity.open();
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
           });
         }
       });
     }
+
+    // 3) Petit filet de secours : si l’UI n’est toujours pas montée
+    //    au bout de quelques secondes, on propose un bouton "Se connecter".
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const appRoot = document.querySelector('#cms-fallback');
+        if (appRoot && !document.querySelector('.CMS_App')) {
+          appRoot.style.display = 'block';
+        }
+      }, 3000);
+    });
   </script>
+
+  <style>
+    .fallback {
+      display: none;
+      text-align: center;
+      margin-top: 24px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    .fallback button {
+      padding: 10px 16px;
+      border: 1px solid #222;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
   <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
+
+  <!-- UI de secours : permet d’ouvrir le widget de login à la main -->
+  <div id="cms-fallback" class="fallback">
+    <p>Si rien ne s’affiche, connecte-toi&nbsp;:</p>
+    <button onclick="window.netlifyIdentity && window.netlifyIdentity.open()">Se connecter</button>
+  </div>
 </body>
 </html>
