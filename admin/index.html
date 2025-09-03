@@ -1,18 +1,32 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Ivry Échecs 94 — Admin</title>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Ivry Échecs 94 — Admin</title>
 
-    <!-- Charge Decap CMS -->
-    <script src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"></script>
+  <!-- Charge Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"></script>
 
-    <!-- Indique où se trouve le fichier de configuration -->
-    <script>
-      CMS.init({ configPath: 'config.yml' });
-    </script>
-  </head>
-  <body>
-    <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
-  </body>
+  <!-- Charge Netlify Identity (authentification) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  <!-- Indique où se trouve le fichier de config -->
+  <script>
+    CMS.init({ configPath: 'config.yml' });
+
+    // Redirige automatiquement vers /admin après login
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
+</body>
 </html>
