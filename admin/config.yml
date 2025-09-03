@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "pages"
+    label: "Pages du site"
+    files:
+      - file: "index.html"
+        label: "Accueil"
+        name: "accueil"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Texte d’introduction (sous le titre)", name: "lead", widget: "text", required: false }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "about.html"
+        label: "Le club"
+        name: "club"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "agenda.html"
+        label: "Agenda"
+        name: "agenda"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu (liste d’événements)", name: "body", widget: "markdown" }
+
+      - file: "tarifs.html"
+        label: "Tarifs"
+        name: "tarifs"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu (tableau/texte)", name: "body", widget: "markdown" }
+
+      - file: "adhesion.html"
+        label: "Adhésion"
+        name: "adhesion"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "contact.html"
+        label: "Contact"
+        name: "contact"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu (texte + formulaire)", name: "body", widget: "markdown" }

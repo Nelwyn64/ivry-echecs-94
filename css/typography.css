@@ -1,0 +1,59 @@
+/* ================= TYPOGRAPHIE – Ivry Échecs 94 ================= */
+
+/* Réglages globaux : modifie seulement ces 2 valeurs pour tout le site */
+:root{
+  --base-size: 16px;  /* 15px si tu veux tout réduire un peu */
+  --scale: 1.18;      /* 1.12–1.2 = discret ; 1.25 = plus grand */
+
+  /* Échelle modulaire */
+  --fs--2: calc(var(--base-size) / (var(--scale) * var(--scale)));
+  --fs--1: calc(var(--base-size) / var(--scale));
+  --fs-0:  var(--base-size);
+  --fs-1:  calc(var(--base-size) * var(--scale));
+  --fs-2:  calc(var(--base-size) * var(--scale) * var(--scale));
+  --fs-3:  calc(var(--base-size) * var(--scale) * var(--scale) * var(--scale));
+  --fs-4:  calc(var(--base-size) * var(--scale) * var(--scale) * var(--scale) * var(--scale));
+}
+
+/* Corps de texte */
+html { font-size: 100%; }
+body {
+  font-size: var(--fs-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Titres – adaptatifs via clamp() */
+:where(h1,h2,h3,h4,h5,h6){
+  margin: 0 0 .6em;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: .2px;
+  color: var(--primary); /* cohérent avec ton thème */
+}
+
+h1 { font-size: clamp(1.6rem, 1.1rem + 2.5vw, var(--fs-4)); font-weight: 800; }
+h2 { font-size: clamp(1.4rem, 1.0rem + 2.0vw, var(--fs-3)); }
+h3 { font-size: clamp(1.25rem, .95rem + 1.4vw, var(--fs-2)); }
+h4 { font-size: clamp(1.15rem, .90rem + 1.0vw, var(--fs-1)); }
+h5 { font-size: clamp(1.05rem, .85rem + .6vw,  var(--fs-0)); }
+h6 { font-size: clamp(1.0rem,  .80rem + .4vw,  var(--fs--1)); }
+
+/* Texte courant / listes */
+p, li { font-size: var(--fs-0); }
+
+/* Utilitaires de taille */
+.text-sm   { font-size: var(--fs--1); }
+.text-base { font-size: var(--fs-0); }
+.text-lg   { font-size: var(--fs-1); }
+.text-xl   { font-size: var(--fs-2); }
+
+/* Surtitre / lead */
+.lead { font-size: var(--fs-1); line-height: 1.5; opacity: .9; }
+
+/* Cohérence nav/boutons */
+.nav a, .btn { font-size: var(--fs-0); font-weight: 600; }
+
+/* Ajustement optionnel : titres plus sobres sur l’agenda si très longs */
+.page-agenda :where(h1,h2){ letter-spacing: .1px; }

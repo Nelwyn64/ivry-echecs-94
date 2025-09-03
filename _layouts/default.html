@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.meta_description | default: site.title }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Feuilles de style - chemins ABSOLUS pour Netlify -->
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="{{ page.layout }}">
+  {% include header.html %}
+
+  <main>
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <!-- Scripts - chemin ABSOLU -->
+  <script src="/js/main.js"></script>
+</body>
+</html>
