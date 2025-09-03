@@ -4,66 +4,57 @@
   <meta charset="utf-8" />
   <title>Ivry Échecs 94 — Admin</title>
 
-  <!-- Decap CMS : épinglé sur une version stable -->
-  <script src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"></script>
-
-  <!-- Netlify Identity (authentification) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
+  <!-- On prépare une fonction d'init qui sera appelée quand Decap est chargé -->
   <script>
-    // 1) Initialisation du CMS + chemin du config.yml
-    CMS.init({ configPath: 'config.yml' });
+    function initCMS() {
+      // Decap CMS expose parfois window.DecapCMS (et toujours CMS sur certaines versions)
+      const CMSNS = window.CMS || window.DecapCMS;
+      if (!CMSNS) {
+        console.error('Decap CMS introuvable (CMS/DecapCMS).');
+        return;
+      }
 
-    // 2) Gestion login Identity : si pas loggé -> on ouvre le widget,
-    //    et après login on revient sur /admin/
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', (user) => {
-        if (!user) {
-          // Ouvre la pop-up de login si rien ne s’affiche
-          // (utile quand le widget n’apparaît pas tout seul)
-          // window.netlifyIdentity.open();
-          window.netlifyIdentity.on('login', () => {
-            document.location.href = '/admin/';
-          });
-        }
-      });
+      CMSNS.init({ configPath: 'config.yml' });
+
+      // Redirige vers /admin/ après login Netlify Identity
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
     }
-
-    // 3) Petit filet de secours : si l’UI n’est toujours pas montée
-    //    au bout de quelques secondes, on propose un bouton "Se connecter".
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const appRoot = document.querySelector('#cms-fallback');
-        if (appRoot && !document.querySelector('.CMS_App')) {
-          appRoot.style.display = 'block';
-        }
-      }, 3000);
-    });
   </script>
 
+  <!-- Decap CMS (on lance initCMS quand le fichier est chargé) -->
+  <script
+    src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"
+    defer
+    onload="initCMS()"
+  ></script>
+
+  <!-- Netlify Identity -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+
   <style>
-    .fallback {
-      display: none;
-      text-align: center;
-      margin-top: 24px;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    }
-    .fallback button {
-      padding: 10px 16px;
-      border: 1px solid #222;
-      background: #fff;
-      cursor: pointer;
-      border-radius: 6px;
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    .wrap { text-align:center; margin-top:50px; }
+    button {
+      padding: 10px 16px; border: 1px solid #222; background: #fff;
+      cursor: pointer; border-radius: 6px; margin-top: 16px;
     }
   </style>
 </head>
 <body>
-  <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
-
-  <!-- UI de secours : permet d’ouvrir le widget de login à la main -->
-  <div id="cms-fallback" class="fallback">
-    <p>Si rien ne s’affiche, connecte-toi&nbsp;:</p>
-    <button onclick="window.netlifyIdentity && window.netlifyIdentity.open()">Se connecter</button>
+  <div class="wrap">
+    <h1>Chargement du CMS…</h1>
+    <p>Si rien ne s’affiche, clique pour te connecter :</p>
+    <button onclick="window.netlifyIdentity && window.netlifyIdentity.open()">
+      Se connecter
+    </button>
   </div>
 </body>
 </html>
