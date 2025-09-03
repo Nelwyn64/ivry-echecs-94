@@ -1,34 +1,20 @@
 <header class="site-header">
-  <div class="container topbar">
+  <div class="container flex space-between align-center">
     <!-- Logo -->
-    <a class="brand" href="{{ site.baseurl }}/index.html">
-      <img src="{{ site.baseurl }}/assets/logo-ivry-echecs.png" alt="Logo Ivry Échecs 94">
+    <a class="logo" href="/index.html">
+      <img src="/assets/logo.png" alt="Ivry Échecs 94" />
     </a>
 
-    <!-- Bouton hamburger (mobile) -->
-    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
-      <span aria-hidden="true">☰</span>
-    </button>
-
-    <!-- Navigation -->
-    <nav id="site-nav" class="nav" aria-label="Navigation principale">
-      <a href="{{ site.baseurl }}/index.html"
-         {% if page.url == '/' or page.url == '/index.html' %}aria-current="page"{% endif %}>Accueil</a>
-
-      <a href="{{ site.baseurl }}/about.html"
-         {% if page.url == '/about.html' %}aria-current="page"{% endif %}>Le club</a>
-
-      <a href="{{ site.baseurl }}/agenda.html"
-         {% if page.url == '/agenda.html' %}aria-current="page"{% endif %}>Agenda</a>
-
-      <a href="{{ site.baseurl }}/tarifs.html"
-         {% if page.url == '/tarifs.html' %}aria-current="page"{% endif %}>Tarifs</a>
-
-      <a href="{{ site.baseurl }}/adhesion.html"
-         {% if page.url == '/adhesion.html' %}aria-current="page"{% endif %}>Adhésion</a>
-
-      <a href="{{ site.baseurl }}/contact.html"
-         {% if page.url == '/contact.html' %}aria-current="page"{% endif %}>Contact</a>
+    <!-- Menu -->
+    <nav class="site-nav">
+      <ul class="flex gap">
+        <li><a href="/index.html">Accueil</a></li>
+        <li><a href="/about.html">Le club</a></li>
+        <li><a href="/agenda.html">Agenda</a></li>
+        <li><a href="/tarifs.html">Tarifs</a></li>
+        <li><a href="/adhesion.html">Adhésion</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
     </nav>
   </div>
 </header>
