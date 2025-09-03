@@ -11,3 +11,7 @@ markdown: kramdown
 exclude:
   - node_modules
   - README.md
+
+include:
+  - admin
+  - _redirects
