@@ -3,36 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <title>Ivry Échecs 94 — Admin</title>
-
-  <!-- Charge Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
-  <!-- Charge Netlify Identity (authentification) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-  <script>
-    // Initialise Decap CMS avec le bon chemin vers config.yml
-    CMS.init({ configPath: '/admin/config.yml' });
-
-    // Redirige automatiquement après login via Netlify Identity
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
   <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
   <p style="text-align:center;">Si rien ne s’affiche, clique pour te connecter :</p>
   <div style="text-align:center;">
-    <button onclick="if(window.netlifyIdentity){window.netlifyIdentity.open()}">
-      Se connecter
-    </button>
+    <a id="fallback-login" href="/admin/#/login" style="display:inline-block;padding:6px 12px;border:1px solid #999;border-radius:4px;text-decoration:none;">Se connecter</a>
   </div>
+
+  <!-- Charger Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js" defer></script>
+
+  <!-- Charger Netlify Identity (authentification) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+
+  <!-- Initialisation quand tout est prêt -->
+  <script>
+    // On attend que la page + les scripts soient complètement chargés
+    window.addEventListener('load', function () {
+      function demarrerCMS() {
+        if (window.CMS && typeof window.CMS.init === 'function') {
+          // Indiquer où se trouve le fichier de configuration
+          window.CMS.init({ configPath: 'config.yml' });
+
+          // Redirection automatique vers /admin après connexion
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.on('init', function (user) {
+              if (!user) {
+                window.netlifyIdentity.on('login', function () {
+                  document.location.href = '/admin/';
+                });
+              }
+            });
+          }
+        } else {
+          // Si CMS n’est pas encore dispo (cache/chargement lent), on réessaie
+          setTimeout(demarrerCMS, 50);
+        }
+      }
+
+      demarrerCMS();
+    });
+  </script>
 </body>
 </html>
