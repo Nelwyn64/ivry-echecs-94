@@ -1,25 +1,65 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>{{ page.title | default: site.title }}</title>
-  <meta name="description" content="{{ page.meta_description | default: site.title }}">
+  <meta charset="utf-8" />
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.meta_description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Feuilles de style - chemins ABSOLUS pour Netlify -->
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Feuilles de style -->
+  <link rel="stylesheet" href="{{ "/css/styles.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/css/typography.css" | relative_url }}">
 </head>
-<body class="{{ page.layout }}">
-  {% include header.html %}
+<body>
+
+  <!-- Contenu de la page -->
+  <header>
+    <h1>Ivry Échecs 94</h1>
+  </header>
 
   <main>
     {{ content }}
   </main>
 
-  {% include footer.html %}
+  <footer>
+    <p>&copy; Ivry Échecs 94</p>
+  </footer>
 
-  <!-- Scripts - chemin ABSOLU -->
-  <script src="/js/main.js"></script>
+  <!-- Scripts JS principaux -->
+  <script src="{{ "/js/main.js" | relative_url }}"></script>
+
+  <!-- Netlify Identity (auth + reset password) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    (function () {
+      function handleRecovery() {
+        try {
+          if (!window.location.hash) return;
+          const hash = window.location.hash.slice(1);
+          const params = new URLSearchParams(hash);
+          const token = params.get('recovery_token');
+          if (!token || !window.netlifyIdentity) return;
+
+          window.netlifyIdentity.recovery(token)
+            .then(function () {
+              history.replaceState(null, "", window.location.pathname + window.location.search);
+              window.netlifyIdentity.open('login');
+            })
+            .catch(function (e) {
+              console.error("Erreur de récupération Netlify Identity :", e);
+            });
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', handleRecovery);
+      } else {
+        document.addEventListener('DOMContentLoaded', handleRecovery);
+      }
+    })();
+  </script>
+
 </body>
 </html>
