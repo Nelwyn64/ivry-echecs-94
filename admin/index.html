@@ -2,48 +2,47 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>Ivry Échecs 94 — Admin</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ivry Échecs 94 — Administration</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    h1 { text-align: center; margin-top: 48px; }
+    .hint { text-align: center; margin: 12px 0 24px; color:#555; }
+    .btn { display:inline-block; padding:8px 14px; border:1px solid #333; border-radius:6px; text-decoration:none; }
+    .wrap { text-align:center; }
+  </style>
+
+  <!-- IMPORTANT : empêcher l'auto-initialisation de Decap -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
+
+  <!-- Decap CMS (UNE SEULE FOIS) -->
+  <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script>
+
+  <!-- Netlify Identity (authentification) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
-  <p style="text-align:center;">Si rien ne s’affiche, clique pour te connecter :</p>
-  <div style="text-align:center;">
-    <a id="fallback-login" href="/admin/#/login" style="display:inline-block;padding:6px 12px;border:1px solid #999;border-radius:4px;text-decoration:none;">Se connecter</a>
-  </div>
+  <h1>Chargement du CMS…</h1>
+  <div class="wrap hint">Si rien ne s’affiche, clique pour te connecter :</div>
+  <div class="wrap"><a class="btn" href="/admin/#/login">Se connecter</a></div>
 
-  <!-- Charger Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js" defer></script>
-
-  <!-- Charger Netlify Identity (authentification) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-
-  <!-- Initialisation quand tout est prêt -->
   <script>
-    // On attend que la page + les scripts soient complètement chargés
-    window.addEventListener('load', function () {
-      function demarrerCMS() {
-        if (window.CMS && typeof window.CMS.init === 'function') {
-          // Indiquer où se trouve le fichier de configuration
-          window.CMS.init({ configPath: 'config.yml' });
-
-          // Redirection automatique vers /admin après connexion
-          if (window.netlifyIdentity) {
-            window.netlifyIdentity.on('init', function (user) {
-              if (!user) {
-                window.netlifyIdentity.on('login', function () {
-                  document.location.href = '/admin/';
-                });
-              }
-            });
-          }
-        } else {
-          // Si CMS n’est pas encore dispo (cache/chargement lent), on réessaie
-          setTimeout(demarrerCMS, 50);
-        }
+    // Initialisation manuelle quand le bundle est prêt
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.CMS && typeof window.CMS.init === 'function') {
+        CMS.init({ configPath: 'config.yml' });
       }
 
-      demarrerCMS();
+      // Si l’utilisateur se connecte, reste sur /admin
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', user => {
+          if (!user) {
+            window.netlifyIdentity.on('login', () => {
+              document.location.href = '/admin/';
+            });
+          }
+        });
+      }
     });
   </script>
 </body>
