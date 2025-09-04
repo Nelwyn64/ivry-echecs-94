@@ -2,64 +2,78 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <title>{{ page.title }}</title>
-  <meta name="description" content="{{ page.meta_description }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    {% if page.title %}{{ page.title }} · {% endif %}{{ site.title | default: "Ivry Échecs 94" }}
+  </title>
+  <meta name="robots" content="index,follow" />
 
-  <!-- Feuilles de style -->
-  <link rel="stylesheet" href="{{ "/css/styles.css" | relative_url }}">
-  <link rel="stylesheet" href="{{ "/css/typography.css" | relative_url }}">
+  <!-- Feuilles de style du site -->
+  <link rel="stylesheet" href="/css/typography.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Favicon (optionnel si présent) -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
-  <!-- Contenu de la page -->
-  <header>
-    <h1>Ivry Échecs 94</h1>
+  <!-- En-tête + Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="/" aria-label="Accueil">
+        <img src="/assets/logo.png" alt="Ivry Échecs 94" loading="lazy" />
+      </a>
+
+      <!-- Bouton burger pour mobile -->
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Menu principal -->
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation principale">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/about.html">Le club</a></li>
+          <li><a href="/agenda.html">Agenda</a></li>
+          <li><a href="/tarifs.html">Tarifs</a></li>
+          <li><a href="/adhesion.html">Adhésion</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <!-- Contenu des pages -->
+  <main id="content" class="site-content">
     {{ content }}
   </main>
 
-  <footer>
-    <p>&copy; Ivry Échecs 94</p>
+  <!-- Pied de page (simple / personnalisable) -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; {{ "now" | date: "%Y" }} {{ site.title | default: "Ivry Échecs 94" }} — Tous droits réservés.</p>
+    </div>
   </footer>
 
-  <!-- Scripts JS principaux -->
-  <script src="{{ "/js/main.js" | relative_url }}"></script>
+  <!-- JS du site (si vous avez un fichier) -->
+  <script src="/js/main.js" defer></script>
 
-  <!-- Netlify Identity (auth + reset password) -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Script pour le menu mobile (intégré ici comme demandé) -->
   <script>
-    (function () {
-      function handleRecovery() {
-        try {
-          if (!window.location.hash) return;
-          const hash = window.location.hash.slice(1);
-          const params = new URLSearchParams(hash);
-          const token = params.get('recovery_token');
-          if (!token || !window.netlifyIdentity) return;
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.querySelector(".nav-toggle");
+      const nav = document.getElementById("site-nav");
 
-          window.netlifyIdentity.recovery(token)
-            .then(function () {
-              history.replaceState(null, "", window.location.pathname + window.location.search);
-              window.netlifyIdentity.open('login');
-            })
-            .catch(function (e) {
-              console.error("Erreur de récupération Netlify Identity :", e);
-            });
-        } catch (e) {
-          console.error(e);
-        }
+      if (toggle && nav) {
+        toggle.addEventListener("click", function () {
+          const isOpen = nav.classList.toggle("open");
+          this.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        });
       }
-
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', handleRecovery);
-      } else {
-        document.addEventListener('DOMContentLoaded', handleRecovery);
-      }
-    })();
+    });
   </script>
-
 </body>
 </html>
