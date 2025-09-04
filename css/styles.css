@@ -149,3 +149,59 @@ body {
 @media (max-width: 900px) {
   .site-header nav ul { flex-wrap: wrap; }
 }
+
+/* Header basique + menu toujours visible en desktop */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: #0d0f12; color: #fff; border-bottom: 1px solid #222;
+}
+.site-header .container {
+  max-width: 1200px; margin: 0 auto; padding: 0.75rem 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.logo { font-weight: 800; color: #ffd86b; text-decoration: none; font-size: 1.15rem; }
+.site-nav { margin-left: auto; display: flex; gap: 1.25rem; }
+.site-nav a { color: #fff; text-decoration: none; font-weight: 600; }
+.site-nav a:hover { color: #ffd86b; }
+
+/* Bouton burger caché en desktop */
+.nav-toggle { display: none; font-size: 1.25rem; background: transparent; color: #fff; border: 1px solid #444; border-radius: 8px; padding: .35rem .6rem; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .nav-toggle { display: inline-block; margin-left: auto; }
+  .site-nav { display: none; flex-direction: column; gap: .75rem; padding: .75rem 0; }
+  .site-nav.open { display: flex; }
+}
+/* ---- Logo dans l’en-tête ---- */
+.site-header .site-logo,
+header .site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.site-header .site-logo img,
+header .site-logo img {
+  max-height: 64px;     /* hauteur désirée du logo (ajuste 48–72px) */
+  width: auto;          /* garde les proportions */
+  height: auto;         /* fallback */
+  object-fit: contain;  /* évite l’étirement */
+}
+
+/* Si un logo apparait dans le contenu (ex: page “Le club”) */
+.content img.logo,
+main img.logo {
+  max-width: 240px;     /* borne la largeur dans le corps de page */
+  height: auto;
+  display: block;
+  margin: 1rem auto;    /* centré */
+}
+
+/* Responsive : logo un peu plus petit sur mobile */
+@media (max-width: 640px) {
+  .site-header .site-logo img,
+  header .site-logo img {
+    max-height: 52px;
+  }
+}
