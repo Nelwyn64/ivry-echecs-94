@@ -183,7 +183,7 @@ header .site-logo {
 
 .site-header .site-logo img,
 header .site-logo img {
-  max-height: 64px;     /* hauteur désirée du logo (ajuste 48–72px) */
+  max-height: 72px;     /* hauteur désirée du logo (ajuste 48–72px) */
   width: auto;          /* garde les proportions */
   height: auto;         /* fallback */
   object-fit: contain;  /* évite l’étirement */
@@ -192,7 +192,7 @@ header .site-logo img {
 /* Si un logo apparait dans le contenu (ex: page “Le club”) */
 .content img.logo,
 main img.logo {
-  max-width: 240px;     /* borne la largeur dans le corps de page */
+  max-width: 280px;     /* borne la largeur dans le corps de page */
   height: auto;
   display: block;
   margin: 1rem auto;    /* centré */
