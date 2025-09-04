@@ -4,55 +4,33 @@
   <meta charset="utf-8" />
   <title>Ivry Échecs 94 — Admin</title>
 
-  <!-- On prépare une fonction d'init qui sera appelée quand Decap est chargé -->
+  <!-- Charge Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <!-- Charge Netlify Identity (authentification) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   <script>
-    function initCMS() {
-      // Decap CMS expose parfois window.DecapCMS (et toujours CMS sur certaines versions)
-      const CMSNS = window.CMS || window.DecapCMS;
-      if (!CMSNS) {
-        console.error('Decap CMS introuvable (CMS/DecapCMS).');
-        return;
-      }
+    // Initialise Decap CMS avec le bon chemin vers config.yml
+    CMS.init({ configPath: '/admin/config.yml' });
 
-      CMSNS.init({ configPath: 'config.yml' });
-
-      // Redirige vers /admin/ après login Netlify Identity
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
-            });
-          }
-        });
-      }
+    // Redirige automatiquement après login via Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
     }
   </script>
-
-  <!-- Decap CMS (on lance initCMS quand le fichier est chargé) -->
-  <script
-    src="https://unpkg.com/decap-cms@3.0.11/dist/decap-cms.js"
-    defer
-    onload="initCMS()"
-  ></script>
-
-  <!-- Netlify Identity -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
-
-  <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
-    .wrap { text-align:center; margin-top:50px; }
-    button {
-      padding: 10px 16px; border: 1px solid #222; background: #fff;
-      cursor: pointer; border-radius: 6px; margin-top: 16px;
-    }
-  </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Chargement du CMS…</h1>
-    <p>Si rien ne s’affiche, clique pour te connecter :</p>
-    <button onclick="window.netlifyIdentity && window.netlifyIdentity.open()">
+  <h1 style="text-align:center; margin-top:50px;">Chargement du CMS…</h1>
+  <p style="text-align:center;">Si rien ne s’affiche, clique pour te connecter :</p>
+  <div style="text-align:center;">
+    <button onclick="if(window.netlifyIdentity){window.netlifyIdentity.open()}">
       Se connecter
     </button>
   </div>
