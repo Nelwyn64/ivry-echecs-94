@@ -205,3 +205,36 @@ main img.logo {
     max-height: 52px;
   }
 }
+/* =========================================================
+   Fonds d’écran par page
+   ========================================================= */
+
+body.page-index {
+  background: url('/assets/uploads/bg-index.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.page-about {
+  background: url('/assets/uploads/bg-about.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.page-agenda {
+  background: url('/assets/uploads/bg-agenda.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.page-contact {
+  background: url('/assets/uploads/bg-contact.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.page-adhesion {
+  background: url('/assets/uploads/bg-adhesion.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body.page-tarifs {
+  background: url('/assets/uploads/bg-tarifs.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
