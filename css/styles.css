@@ -204,7 +204,8 @@ main img.logo {
 /* =========================================================
    Fonds d’écran par page
    ========================================================= */
-/* --- Overlay sombre pour toutes les pages --- */
+
+/* Règle générale : overlay sombre + réglages communs */
 body[class^="page-"] {
   background: 
     linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
@@ -212,34 +213,10 @@ body[class^="page-"] {
   background-size: cover;
 }
 
-body.page-index {
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
-    url('/assets/bg-index.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.page-about {
-  background: url('/assets/bg-about.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.page-agenda {
-  background: url('/assets/bg-agenda.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.page-contact {
-  background: url('/assets/bg-contact.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.page-adhesion {
-  background: url('/assets/bg-adhesion.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.page-tarifs {
-  background: url('/assets/bg-tarifs.jpg') no-repeat center center fixed;
-  background-size: cover;
-}
+/* Images spécifiques selon la page */
+body.page-index    { background-image: url('/assets/bg-index.jpg'); }
+body.page-about    { background-image: url('/assets/bg-about.jpg'); }
+body.page-agenda   { background-image: url('/assets/bg-agenda.jpg'); }
+body.page-contact  { background-image: url('/assets/bg-contact.jpg'); }
+body.page-adhesion { background-image: url('/assets/bg-adhesion.jpg'); }
+body.page-tarifs   { background-image: url('/assets/bg-tarifs.jpg'); }
