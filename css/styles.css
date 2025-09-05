@@ -7,7 +7,7 @@
   --muted: rgba(255,255,255,.70);
   --primary: #f4e38b;
   --accent: #fd353c;
-  --surface: rgba(255,255,255,.15);
+  --surface: rgba(180,180,180,.15);
   --border: rgba(255,255,255,.12);
   --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
