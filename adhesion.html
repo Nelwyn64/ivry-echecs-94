@@ -20,52 +20,41 @@ bg_image: bg-adhesion.jpg
   <h3>Documents utiles</h3>
   <ul>
     <li>📄 Pièce d’identité (ou livret de famille pour les mineurs)</li>
-    <p style="margin:20px 0;"></p><li><style>
-  .brace-group {
-    display: flex;
-    align-items: stretch;   /* l’accolade prend la même hauteur que la liste */
-    margin: 20px 0;
-  }
+    <p style="margin:20px 0;"></p><!-- garde ta carte et le <ul> parent -->
+<ul class="docs-list">
+  <li>📄 Pièce d’identité (ou livret de famille pour les mineurs)</li>
 
-  .brace-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  <!-- 1 seul <li> pour regrouper les 3 liens -->
+  <li class="medical-group">
 
-  .brace-links li {
-    margin: 5px 0;
-  }
+    <style>
+      .brace-group{display:flex;align-items:stretch;gap:12px;margin:8px 0}
+      .brace-links{list-style:none;margin:0;padding:0}
+      .brace-links li{margin:4px 0}
+      .brace{display:flex;align-items:center;align-self:stretch;
+             font-size:clamp(48px,8vw,100px);line-height:.8;
+             color:#fd353c;font-weight:700;padding:0 6px}
+      .brace-text{display:flex;align-items:center;white-space:nowrap;
+                  font-style:italic;color:#cccccc}
+      /* Optionnel: bleu liens local à ce groupe */
+      .medical-group a{color:#4da6ff;text-decoration:none}
+      .medical-group a:hover{color:#82c4ff}
+    </style>
 
-  .brace {
-    display: flex;
-    align-items: center;    /* centre l’accolade verticalement */
-    font-size: 80px;        /* taille de base */
-    color: #fd353c;         /* rouge vif du club */
-    font-weight: bold;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+    <div class="brace-group">
+      <ul class="brace-links">
+        <li>📄 <a href="/assets/uploads/attestation_negative.pdf" target="_blank">Attestation de réponses négatives</a></li>
+        <li>📄 <a href="/assets/uploads/questionnaire_mineur.pdf" target="_blank">Questionnaire de santé — Mineur</a></li>
+        <li>📄 <a href="/assets/uploads/questionnaire_majeur.pdf" target="_blank">Questionnaire de santé — Majeur</a></li>
+      </ul>
+      <div class="brace">}</div>
+      <div class="brace-text">Documents médicaux à fournir</div>
+    </div>
+  </li>
 
-  .brace-text {
-    display: flex;
-    align-items: center;    /* aligne le texte au milieu verticalement */
-    font-style: italic;
-    color: #cccccc;         /* gris clair */
-  }
-</style>
+  <li>📄 Règlement de la cotisation (voir la page <a href="/tarifs/">Tarifs</a>)</li>
+</ul>
 
-<div class="brace-group">
-  <ul class="brace-links">
-    <li>📄 <a href="/assets/uploads/attestation_negative.pdf" target="_blank">Attestation de réponses négatives</a></li>
-    <li>📄 <a href="/assets/uploads/questionnaire_mineur.pdf" target="_blank">Questionnaire de santé — Mineur</a></li>
-    <li>📄 <a href="/assets/uploads/questionnaire_majeur.pdf" target="_blank">Questionnaire de santé — Majeur</a></li>
-  </ul>
-  <div class="brace">}</div>
-  <div class="brace-text">Documents médicaux à fournir</div>
-</div>
-<a href="/assets/uploads/questionnaire_majeur.pdf" target="_blank">Questionnaire de santé — Majeur </a></li>
-    <p style="margin:20px 0;"></p><li>📄 Règlement de la cotisation (voir la page <a href="/tarifs/">Tarifs</a>)</li>
   </ul>
 </div><style>
   .card a {
