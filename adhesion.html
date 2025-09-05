@@ -18,45 +18,39 @@ bg_image: bg-adhesion.jpg
 
   <div class="card" style="margin-top:16px">
   <h3>Documents utiles</h3>
+
   <ul>
     <li>📄 Pièce d’identité (ou livret de famille pour les mineurs)</li>
-    <p style="margin:20px 0;"></p>.brace-group {
-  display: flex;
-  align-items: center;   /* centre verticalement */
-  margin: 0;             /* enlève le décalage */
-}
+    <li class="medical-group">
 
-.brace-links {
-  list-style: none;
-  margin: 0;             /* enlève la marge par défaut */
-  padding: 0;
-}
+      <style>
+        .brace-group{display:flex;align-items:center;margin:0}
+        .brace-links{list-style:none;margin:0;padding:0}
+        .brace-links li{margin:4px 0}
+        .brace{display:flex;align-items:center;font-size:70px;line-height:1;
+               color:#fd353c;font-weight:400;font-family:Arial, sans-serif;margin:0 8px}
+        .brace-text{display:flex;align-items:center;font-style:italic;color:#cccccc;margin-left:8px}
 
-.brace-links li {
-  margin: 4px 0;
-}
+        /* (optionnel) Liens plus clairs dans cette carte */
+        .card a{color:#4da6ff}
+        .card a:hover{color:#82c4ff}
+      </style>
 
-.brace {
-  display: flex;
-  align-items: center;
-  font-size: 70px;       /* taille réduite */
-  line-height: 1;
-  color: #fd353c;        /* rouge vif */
-  font-weight: 400;      /* normal, moins épais */
-  font-family: Arial, sans-serif; /* police fine et lisible */
-  margin: 0 8px;         /* espace autour de l’accolade */
-}
+      <div class="brace-group">
+        <ul class="brace-links">
+          <li>📄 <a href="/assets/uploads/attestation_negative.pdf" target="_blank">Attestation de réponses négatives</a></li>
+          <li>📄 <a href="/assets/uploads/questionnaire_mineur.pdf" target="_blank">Questionnaire de santé — Mineur</a></li>
+          <li>📄 <a href="/assets/uploads/questionnaire_majeur.pdf" target="_blank">Questionnaire de santé — Majeur</a></li>
+        </ul>
+        <div class="brace">}</div>
+        <div class="brace-text">Documents médicaux à fournir</div>
+      </div>
+    </li>
 
-.brace-text {
-  display: flex;
-  align-items: center;
-  font-style: italic;
-  color: #cccccc;
-  margin-left: 8px;
-}
-
+    <li>📄 Règlement de la cotisation (voir la page <a href="/tarifs/">Tarifs</a>)</li>
   </ul>
-</div><style>
+</div>
+
   .card a {
     color:#4da6ff; /* bleu clair */
   }
