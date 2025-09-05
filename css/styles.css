@@ -34,10 +34,6 @@ body {
 /* --------- Hero ----------------------------------------- */
 /* Chemin ABSOLU pour éviter tout souci */
 .hero {
-  background-image: url("/assets/bg-index.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   min-height: 60vh;
   display: flex;
   align-items: center;
@@ -210,7 +206,9 @@ main img.logo {
    ========================================================= */
 
 body.page-index {
-  background: url('/assets/bg-index.jpg') no-repeat center center fixed;
+  background: 
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+    url('/assets/bg-index.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
