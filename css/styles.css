@@ -204,6 +204,13 @@ main img.logo {
 /* =========================================================
    Fonds d’écran par page
    ========================================================= */
+/* --- Overlay sombre pour toutes les pages --- */
+body[class^="page-"] {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
+    no-repeat center center fixed;
+  background-size: cover;
+}
 
 body.page-index {
   background: 
