@@ -202,21 +202,26 @@ main img.logo {
   }
 }
 /* =========================================================
-   Fonds d’écran par page
+   Fonds d’écran par page (overlay global + image par page)
    ========================================================= */
 
 /* Règle générale : overlay sombre + réglages communs */
 body[class^="page-"] {
-  background: 
+  /* overlay + image (via variable) en 2 couches */
+  --page-bg: none; /* sera défini par page */
+  background-image:
     linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
-    no-repeat center center fixed;
-  background-size: cover;
+    var(--page-bg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-attachment: fixed, fixed;
+  background-size: cover, cover;
 }
 
-/* Images spécifiques selon la page */
-body.page-index    { background-image: url('/assets/bg-index.jpg'); }
-body.page-about    { background-image: url('/assets/bg-about.jpg'); }
-body.page-agenda   { background-image: url('/assets/bg-agenda.jpg'); }
-body.page-contact  { background-image: url('/assets/bg-contact.jpg'); }
-body.page-adhesion { background-image: url('/assets/bg-adhesion.jpg'); }
-body.page-tarifs   { background-image: url('/assets/bg-tarifs.jpg'); }
+/* Image spécifique selon la page (ne change que la variable) */
+body.page-index    { --page-bg: url('/assets/bg-index.jpg'); }
+body.page-about    { --page-bg: url('/assets/bg-about.jpg'); }
+body.page-agenda   { --page-bg: url('/assets/bg-agenda.jpg'); }
+body.page-contact  { --page-bg: url('/assets/bg-contact.jpg'); }
+body.page-adhesion { --page-bg: url('/assets/bg-adhesion.jpg'); }
+body.page-tarifs   { --page-bg: url('/assets/bg-tarifs.jpg'); }
