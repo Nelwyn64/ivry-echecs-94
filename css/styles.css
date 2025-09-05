@@ -225,3 +225,21 @@ body.page-agenda   { --page-bg: url('/assets/bg-agenda.jpg'); }
 body.page-contact  { --page-bg: url('/assets/bg-contact.jpg'); }
 body.page-adhesion { --page-bg: url('/assets/bg-adhesion.jpg'); }
 body.page-tarifs   { --page-bg: url('/assets/bg-tarifs.jpg'); }
+
+/* === Sticky footer === */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* prend toute la hauteur dispo */
+}
+
+.site-footer {
+  margin-top: auto; /* pousse le footer en bas */
+}
