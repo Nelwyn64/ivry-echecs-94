@@ -104,7 +104,7 @@ body {
 /* --------- Footer --------------------------------------- */
 .site-footer {
   background: #0d0f14; color: rgba(255,255,255,.8);
-  padding: 2px 0; margin-top: 40px; font-size: .30rem;
+  padding: 2px 0; margin-top: 40px; font-size: .10rem;
 }
 .site-footer a { color: var(--primary); text-decoration: none; transition: color .2s ease; }
 .site-footer a:hover { color: var(--accent); }
