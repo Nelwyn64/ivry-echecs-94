@@ -213,6 +213,7 @@ body.page-index {
 }
 
 body.page-about {
+  linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
   background: url('/assets/bg-about.jpg') no-repeat center center fixed;
   background-size: cover;
 }
