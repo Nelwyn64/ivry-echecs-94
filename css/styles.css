@@ -207,7 +207,7 @@ main img.logo {
 
 body.page-index {
   background: 
-    linear-gradient(rgba(0,0,0,1.15), rgba(0,0,0,1.15)),
+    linear-gradient(rgba(0,0,0,1.10), rgba(0,0,0,1.10)),
     url('/assets/bg-index.jpg') no-repeat center center fixed;
   background-size: cover;
 }
