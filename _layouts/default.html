@@ -34,15 +34,16 @@
 
       <!-- Menu principal -->
       <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation principale">
-        <ul>
-          <li><a href="/">Accueil</a></li>
-          <li><a href="/about.html">Le club</a></li>
-          <li><a href="/agenda.html">Agenda</a></li>
-          <li><a href="/tarifs.html">Tarifs</a></li>
-          <li><a href="/adhesion.html">Adhésion</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </nav>
+  <ul>
+    <li><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>Accueil</a></li>
+    <li><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>Le club</a></li>
+    <li><a href="/agenda/" {% if page.url == '/agenda/' %}aria-current="page"{% endif %}>Agenda</a></li>
+    <li><a href="/tarifs/" {% if page.url == '/tarifs/' %}aria-current="page"{% endif %}>Tarifs</a></li>
+    <li><a href="/adhesion/" {% if page.url == '/adhesion/' %}aria-current="page"{% endif %}>Adhésion</a></li>
+    <li><a href="/contact/" {% if page.url == '/contact/' %}aria-current="page"{% endif %}>Contact</a></li>
+  </ul>
+</nav>
+
     </div>
   </header>
 
