@@ -301,3 +301,31 @@ body.page-index .hero h1{
 
 /* Si tu as des "spacers" inline, neutralise-les dans les cartes */
 .card p[style*="margin"] { margin: 8px 0 !important; }
+/* ===== Rangée des 3 cartes de la home ===== */
+.home-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;        /* aligne le haut de chaque carte */
+}
+
+/* Chaque carte s’étire pour faire des hauteurs régulières */
+.home-cards .card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* On neutralise les marges par défaut qui créent des micro-décalages */
+.home-cards .card h3{ margin: 0 0 .6rem; }
+.home-cards .card p { margin: 0; }
+
+/* Responsive : une colonne sur mobile */
+@media (max-width: 900px){
+  .home-cards{ grid-template-columns: 1fr; }
+}
+
+/* Optionnel : si tu veux forcer exactement la même hauteur visuelle */
+@media (min-width: 900px){
+  .home-cards .card{ min-height: 180px; } /* ajuste la valeur si besoin */
+}
