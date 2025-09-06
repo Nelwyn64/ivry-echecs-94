@@ -311,9 +311,18 @@ body.page-index .hero h1{
 
 /* Chaque carte s’étire pour faire des hauteurs régulières */
 .home-cards .card{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes fixes */
+  gap: 20px;
+  margin: 40px 0;
+}
+
+/* Chaque carte uniforme */
+.home-cards .card {
+  min-height: 160px; /* même hauteur pour toutes */
   display: flex;
   flex-direction: column;
-  height: 100%;
+  justify-content: space-between; /* équilibre le contenu */
 }
 
 /* On neutralise les marges par défaut qui créent des micro-décalages */
