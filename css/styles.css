@@ -32,7 +32,6 @@ body {
 .sr-only{ position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
 
 /* --------- Hero ----------------------------------------- */
-/* Chemin ABSOLU pour éviter tout souci */
 .hero {
   min-height: 60vh;
   display: flex;
@@ -41,10 +40,17 @@ body {
   text-align: left;
   padding: 40px 0;
 }
-/* resserrer le hero de la page d’accueil */
-.page-index .hero { padding-top: 12px; }    /* avant: 40px */
-.page-index .hero h1 { margin-top: 0; }
-.page-index .hero .lead { margin-top: 4px; } /* optionnel, texte sous le h1 */
+/* --- Hero accueil : rapproché mais pas collé --- */
+body.page-index .hero{
+  padding-top: 20px;       /* un peu d’air sous le header */
+  padding-bottom: 28px;    /* réduit l'espace sous le hero */
+  margin-top: -6px;        /* micro-ajustement sous l’en-tête sticky */
+}
+body.page-index .hero h1{
+  margin: 0 0 8px 0;
+  font-size: clamp(28px, 3.1vw, 42px); /* taille fluide et lisible */
+}
+body.page-index .hero .lead{ margin-top: 4px; }
 
 /* --------- Buttons -------------------------------------- */
 .btn {
@@ -214,8 +220,7 @@ main img.logo {
 
 /* Règle générale : overlay sombre + réglages communs */
 body[class^="page-"] {
-  /* overlay + image (via variable) en 2 couches */
-  --page-bg: none; /* sera défini par page */
+  --page-bg: none;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.89), rgba(0, 0, 0, 0.89)),
     var(--page-bg);
@@ -224,8 +229,6 @@ body[class^="page-"] {
   background-attachment: fixed, fixed;
   background-size: cover, cover;
 }
-
-/* Image spécifique selon la page (ne change que la variable) */
 body.page-index    { --page-bg: url('/assets/bg-index.jpg'); }
 body.page-about    { --page-bg: url('/assets/bg-about.jpg'); }
 body.page-agenda   { --page-bg: url('/assets/bg-agenda.jpg'); }
@@ -234,98 +237,117 @@ body.page-adhesion { --page-bg: url('/assets/bg-adhesion.jpg'); }
 body.page-tarifs   { --page-bg: url('/assets/bg-tarifs.jpg'); }
 
 /* === Sticky footer === */
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; }
+main { flex: 1; }
+.site-footer { margin-top: auto; }
 
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1; /* prend toute la hauteur dispo */
-}
-
-.site-footer {
-  margin-top: auto; /* pousse le footer en bas */
-}
-
-/* ====== Kit d’alignement global (pages uniformes) ====== */
-
-/* 1) Évite le "saut" de largeur quand la scrollbar apparaît/disparaît */
+/* ====== Kit d’alignement global ====== */
 html { overflow-y: scroll; }
-
-/* 2) Même espace sous le header sticky pour toutes les pages */
 .site-content { padding-top: 16px; }
-
-/* 3) Normalise les marges de premier/dernier élément dans .container */
 .container > *:first-child { margin-top: 0; }
 .container > *:last-child  { margin-bottom: 0; }
-
-/* 4) Titres de section : pas de marge haute parasite */
 .section-title,
 .container h1:first-child { margin-top: 0; }
-
-/* 5) Cartes : même espacement partout */
 .card { margin-top: 16px; }
 
-/* 6) Si des "spacers" inline existent, on les rend neutres */
-.container p[style*="margin:40px 0"] { margin: 16px 0 !important; }
+/* Neutralisation des <p style="margin..."> */
+.container p[style*="margin"]{ margin: 8px 0 !important; }
+.card p[style*="margin"]{ margin: 8px 0 !important; }
 
-/* Rapprocher le titre de la barre sur la page d’accueil uniquement */
-body.page-index .hero{
-  padding-top: 12px;         /* avant tu étais à 40px : on remonte nettement */
-  padding-bottom: 28px;      /* un peu moins de vide sous le bloc aussi */
-  margin-top: -6px;          /* micro-ajustement sous l’en-tête sticky */
-}
-
-body.page-index .hero h1{
-  margin-top: 0;             /* supprime tout éventuel espace au-dessus du H1 */
-  margin-bottom: 8px;        /* un soupçon d’air sous le titre */
-  font-size: 2.7rem;         /* verrouille la taille du titre si une autre règle l’a réduite */
-}
-
-/* Si tu veux un peu plus grand, remplace par 2.7rem ou utilise une taille fluide : */
-/* font-size: clamp(28px, 3.2vw, 42px); */
-
-/* Étire toutes les cartes à la même hauteur dans une grille */
-.grid { align-items: stretch; }               /* les cellules de grid s'étirent */
-.grid .card { display: flex; flex-direction: column; height: 100%; }
-
-/* Évite l'espace en trop dû aux marges internes */
 .card > *:first-child { margin-top: 0; }
 .card > *:last-child  { margin-bottom: 0; }
 .card ul { margin: 0; padding-left: 1.1em; }
 .card li { margin: 4px 0; }
 
-/* Si tu as des "spacers" inline, neutralise-les dans les cartes */
-.card p[style*="margin"] { margin: 8px 0 !important; }
 /* ===== Rangée des 3 cartes de la home ===== */
-/* Cartes d'info sur l'accueil (Horaires, Lieu, Contact) */
-.home-cards {
+.home-cards{
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 24px;
-  align-items: stretch;   /* toutes les cartes ont la même hauteur */
+  align-items: stretch;
   margin: 40px 0;
 }
-
-.home-cards .card {
-  margin: 0;              /* supprime les marges parasites */
-  height: 100%;           /* occupe toute la hauteur disponible */
+.home-cards .card{
+  margin: 0;
+  height: 100%;
   display: flex;
-  flex-direction: column; /* contenu vertical */
+  flex-direction: column;
 }
-
-.home-cards .card h3 { margin-top: 0; }
-.home-cards .card p:last-child { margin-bottom: 0; }
-
-/* Responsive : une seule colonne sur mobile */
-@media (max-width: 900px) {
-  .home-cards { grid-template-columns: 1fr; }
+.home-cards .card h3{ margin-top: 0; }
+.home-cards .card p:last-child{ margin-bottom: 0; }
+@media (max-width: 900px){
+  .home-cards{ grid-template-columns: 1fr; }
 }
-
 @media (min-width: 900px){
-  .home-cards .card{ min-height: 180px; } /* ajuste la valeur si besoin */
+  .home-cards .card{ min-height: 180px; }
+}
+
+/* ===== Rangée des 2 cartes Enfants / Adultes ===== */
+.audience-cards{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 24px;
+  align-items: stretch;
+  margin: 40px 0;
+}
+.audience-cards .card{
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.audience-cards .card h3{ margin-top: 0; }
+.audience-cards .card p:last-child{ margin-bottom: 0; }
+@media (max-width: 900px){
+  .audience-cards{ grid-template-columns: 1fr; }
+}
+/* ===== Cartes accueil : alignement et même hauteur ===== */
+
+/* 1ère rangée : 3 colonnes (Horaires / Lieu / Contact) */
+.home-cards{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 24px;
+  align-items: start;   /* têtes alignées */
+  margin: 32px 0;
+}
+
+/* 2e rangée : 2 colonnes (Enfants / Adultes) */
+.audience-cards{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 24px;
+  align-items: start;
+  margin: 32px 0;
+}
+
+/* Cartes uniformes dans ces rangées (sans toucher au reste du site) */
+.home-cards .card,
+.audience-cards .card{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+/* Hauteur mini (ajuste 160–200 selon rendu voulu) */
+@media (min-width: 900px){
+  .home-cards .card,
+  .audience-cards .card{
+    min-height: 180px;
+  }
+}
+
+/* Marges internes propres pour éviter les micro-décalages */
+.home-cards .card h3,
+.audience-cards .card h3{ margin: 0 0 .6rem; }
+
+.home-cards .card p:last-child,
+.audience-cards .card p:last-child{ margin-bottom: 0; }
+
+/* Mobile : 1 colonne */
+@media (max-width: 900px){
+  .home-cards{ grid-template-columns: 1fr; }
+  .audience-cards{ grid-template-columns: 1fr; }
 }
