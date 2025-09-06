@@ -243,3 +243,25 @@ main {
 .site-footer {
   margin-top: auto; /* pousse le footer en bas */
 }
+
+/* ====== Kit d’alignement global (pages uniformes) ====== */
+
+/* 1) Évite le "saut" de largeur quand la scrollbar apparaît/disparaît */
+html { overflow-y: scroll; }
+
+/* 2) Même espace sous le header sticky pour toutes les pages */
+.site-content { padding-top: 16px; }
+
+/* 3) Normalise les marges de premier/dernier élément dans .container */
+.container > *:first-child { margin-top: 0; }
+.container > *:last-child  { margin-bottom: 0; }
+
+/* 4) Titres de section : pas de marge haute parasite */
+.section-title,
+.container h1:first-child { margin-top: 0; }
+
+/* 5) Cartes : même espacement partout */
+.card { margin-top: 16px; }
+
+/* 6) Si des "spacers" inline existent, on les rend neutres */
+.container p[style*="margin:40px 0"] { margin: 16px 0 !important; }
