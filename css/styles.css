@@ -41,8 +41,10 @@ body {
   text-align: left;
   padding: 40px 0;
 }
-.hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-.hero .lead { font-size: 1.2rem; color: var(--muted); }
+/* resserrer le hero de la page d’accueil */
+.page-index .hero { padding-top: 12px; }    /* avant: 40px */
+.page-index .hero h1 { margin-top: 0; }
+.page-index .hero .lead { margin-top: 4px; } /* optionnel, texte sous le h1 */
 
 /* --------- Buttons -------------------------------------- */
 .btn {
