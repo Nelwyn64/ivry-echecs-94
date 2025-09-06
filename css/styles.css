@@ -288,3 +288,16 @@ body.page-index .hero h1{
 
 /* Si tu veux un peu plus grand, remplace par 2.7rem ou utilise une taille fluide : */
 /* font-size: clamp(28px, 3.2vw, 42px); */
+
+/* Étire toutes les cartes à la même hauteur dans une grille */
+.grid { align-items: stretch; }               /* les cellules de grid s'étirent */
+.grid .card { display: flex; flex-direction: column; height: 100%; }
+
+/* Évite l'espace en trop dû aux marges internes */
+.card > *:first-child { margin-top: 0; }
+.card > *:last-child  { margin-bottom: 0; }
+.card ul { margin: 0; padding-left: 1.1em; }
+.card li { margin: 4px 0; }
+
+/* Si tu as des "spacers" inline, neutralise-les dans les cartes */
+.card p[style*="margin"] { margin: 8px 0 !important; }
