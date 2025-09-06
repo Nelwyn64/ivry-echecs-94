@@ -302,39 +302,30 @@ body.page-index .hero h1{
 /* Si tu as des "spacers" inline, neutralise-les dans les cartes */
 .card p[style*="margin"] { margin: 8px 0 !important; }
 /* ===== Rangée des 3 cartes de la home ===== */
-.home-cards{
+/* Cartes d'info sur l'accueil (Horaires, Lieu, Contact) */
+.home-cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 24px;
-  align-items: start;        /* aligne le haut de chaque carte */
-}
-
-/* Chaque carte s’étire pour faire des hauteurs régulières */
-.home-cards .card{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colonnes fixes */
-  gap: 20px;
+  align-items: stretch;   /* toutes les cartes ont la même hauteur */
   margin: 40px 0;
 }
 
-/* Chaque carte uniforme */
 .home-cards .card {
-  min-height: 160px; /* même hauteur pour toutes */
+  margin: 0;              /* supprime les marges parasites */
+  height: 100%;           /* occupe toute la hauteur disponible */
   display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* équilibre le contenu */
+  flex-direction: column; /* contenu vertical */
 }
 
-/* On neutralise les marges par défaut qui créent des micro-décalages */
-.home-cards .card h3{ margin: 0 0 .6rem; }
-.home-cards .card p { margin: 0; }
+.home-cards .card h3 { margin-top: 0; }
+.home-cards .card p:last-child { margin-bottom: 0; }
 
-/* Responsive : une colonne sur mobile */
-@media (max-width: 900px){
-  .home-cards{ grid-template-columns: 1fr; }
+/* Responsive : une seule colonne sur mobile */
+@media (max-width: 900px) {
+  .home-cards { grid-template-columns: 1fr; }
 }
 
-/* Optionnel : si tu veux forcer exactement la même hauteur visuelle */
 @media (min-width: 900px){
   .home-cards .card{ min-height: 180px; } /* ajuste la valeur si besoin */
 }
