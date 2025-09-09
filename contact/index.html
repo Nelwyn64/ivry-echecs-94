@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>
-    {% if page.title %}{{ page.title }} · {% endif %}{{ site.title | default: "Ivry Échecs 94" }}
+    Ivry Échecs 94 — Contact · Ivry Échecs 94
   </title>
   <meta name="robots" content="index,follow" />
 
@@ -15,7 +15,7 @@
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
-<body class="{{ page.class }}">
+<body class="page-contact">
 
   <!-- Header -->
   <header class="site-header">
@@ -35,10 +35,10 @@
       <!-- Navigation principale -->
       <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation principale">
         <ul>
-          <li><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>Accueil</a></li>
+          <li><a href="/" >Accueil</a></li>
 
           <li class="has-submenu">
-            <a href="/about/" {% if page.url contains '/about/' %}aria-current="page"{% endif %}>Le club</a>
+            <a href="/about/" >Le club</a>
             <ul class="submenu">
               <li><a href="/about/histoire/">Histoire</a></li>
               <li><a href="/about/equipe/">Équipe</a></li>
@@ -47,16 +47,16 @@
           </li>
 
           <li class="has-submenu">
-            <a href="/agenda/" {% if page.url contains '/agenda/' %}aria-current="page"{% endif %}>Agenda</a>
+            <a href="/agenda/" >Agenda</a>
             <ul class="submenu">
               <li><a href="/agenda/calendrier/">Calendrier</a></li>
               <li><a href="/agenda/competition/">Compétition</a></li>
             </ul>
           </li>
 
-          <li><a href="/tarifs/" {% if page.url == '/tarifs/' %}aria-current="page"{% endif %}>Tarifs</a></li>
-          <li><a href="/adhesion/" {% if page.url == '/adhesion/' %}aria-current="page"{% endif %}>Adhésion</a></li>
-          <li><a href="/contact/" {% if page.url == '/contact/' %}aria-current="page"{% endif %}>Contact</a></li>
+          <li><a href="/tarifs/" >Tarifs</a></li>
+          <li><a href="/adhesion/" >Adhésion</a></li>
+          <li><a href="/contact/" aria-current="page">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -64,13 +64,52 @@
 
   <!-- Contenu -->
   <main id="content" class="site-content">
-    {{ content }}
+    <section class="container">
+  <h1>Contact</h1>
+
+  <p>Besoin d’informations ? Écrivez-nous avec le formulaire ci-dessous.</p>
+
+  <!-- Formulaire Netlify -->
+  <form name="contact" method="POST" data-netlify="true"
+      netlify-honeypot="bot-field" action="/merci">
+  <input type="hidden" name="form-name" value="contact">
+  <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+
+    <p>
+      <label for="name">Nom<br>
+        <input id="name" type="text" name="name" required autocomplete="name">
+      </label>
+    </p>
+
+    <p>
+      <label for="email">Email<br>
+        <input id="email" type="email" name="email" required autocomplete="email">
+      </label>
+    </p>
+
+    <p>
+      <label for="message">Message<br>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </label>
+    </p>
+
+    <p>
+      <button class="btn" type="submit">Envoyer</button>
+    </p>
+  </form>
+
+  <p style="margin-top:16px">
+    Ou écrivez-nous directement :
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
+  </p>
+</section>
+
   </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; {{ "now" | date: "%Y" }} {{ site.title | default: "Ivry Échecs 94" }} — Tous droits réservés.</p>
+      <p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p>
     </div>
   </footer>
 
