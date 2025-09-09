@@ -1,0 +1,364 @@
+/* =========================================================
+   Ivry Échecs 94 – stylesheet
+   ========================================================= */
+:root{
+  --bg: #0d0f14;
+  --ink: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --primary: #f4e38b;
+  --accent: #fd353c;
+  --surface: rgba(45,45,45,.55);
+  --border: rgba(255,255,255,.12);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+/* ===== Réglages de base & layout global ================== */
+*,*::before,*::after{ box-sizing:border-box; }
+
+html{
+  height:100%;
+  overflow-y:auto;              /* pas de double scroll */
+  scrollbar-gutter:stable;      /* évite les sauts horizontaux */
+}
+
+body{
+  /* Sticky footer sain : le body est une colonne pleine hauteur */
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+
+  margin:0;
+  font-family: system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;            /* pas de scroll horizontal */
+}
+
+main.site-content{ flex:1 0 auto; }  /* pousse le footer en bas */
+
+/* Helpers */
+.container{ max-width:1100px; margin:0 auto; padding:0 16px; }
+.grid{ display:grid; gap:20px; }
+.cols-2{ grid-template-columns:repeat(2,1fr); }
+.cols-3{ grid-template-columns:repeat(3,1fr); }
+@media (max-width:1100px){ .cols-3{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:700px){ .cols-3,.cols-2{ grid-template-columns:1fr; } }
+.sr-only{ position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+/* --------- Hero ----------------------------------------- */
+.hero{ padding: 28px 0 36px; }
+
+body.page-index .hero h1{
+  margin:0 0 18px 0;
+  font-size:clamp(28px, 3.1vw, 42px);
+}
+body.page-index .hero .lead{
+  margin-top:8px;
+  margin-bottom:18px;
+  font-size:1.2rem;
+  line-height:1.5;
+}
+body.page-index .hero .cta{ margin-top:18px; }
+
+/* --------- Buttons -------------------------------------- */
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  padding:10px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  margin:5px;
+  transition:background .2s ease;
+  box-shadow:var(--shadow);
+}
+.btn:hover{ background:#c72c2c; }
+
+/* --------- Cards ---------------------------------------- */
+.card{ background:var(--surface); padding:20px; border-radius:12px; box-shadow:var(--shadow); }
+.card h3{ margin-top:0; }
+
+/* --------- Tables --------------------------------------- */
+.glass-table{ width:100%; border-collapse:collapse; background:var(--surface); border-radius:12px; overflow:hidden; }
+.glass-table th,.glass-table td{ padding:10px; border:1px solid var(--border); text-align:left; }
+.glass-table th{ background:rgba(255,255,255,.08); }
+
+/* --------- Forms ---------------------------------------- */
+.form label{ display:block; margin-bottom:4px; }
+.form input,.form textarea{
+  width:100%; padding:8px; border:1px solid var(--border);
+  border-radius:6px; background:#fff; color:#000;
+}
+.form textarea{ min-height:120px; }
+
+/* --------- Agenda / News -------------------------------- */
+.agenda-list,.news{ list-style:none; padding:0; margin:0; }
+.agenda-list li{ padding:8px 0; border-bottom:1px solid var(--border); }
+.news li{ margin-bottom:12px; }
+.news time{ font-weight:700; margin-right:6px; }
+
+/* --------- Gallery -------------------------------------- */
+.gallery{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+.gallery img{ width:100%; border-radius:10px; box-shadow:var(--shadow); }
+
+/* =========================================================
+   Header & Navigation
+   ========================================================= */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:#0a0c10; color:#fff; border-bottom:1px solid var(--border);
+}
+.header-inner{ display:flex; align-items:center; gap:16px; }
+.site-logo img{ max-height:48px; display:block; }
+
+/* Nav (desktop) */
+.site-nav{ margin-left:auto; }
+.site-nav > ul{
+  display:flex; gap:28px;   /* aération */
+  list-style:none; margin:0; padding:0;
+}
+
+/* Boutons de 1er niveau */
+.site-nav > ul > li > a{
+  display:inline-block;
+  padding:14px 28px;
+  border:1px solid #e2c86a3d;      /* encadré discret */
+  border-radius:10px;
+  color:var(--ink);
+  text-decoration:none;
+  background:transparent;
+  line-height:1.1;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.site-nav > ul > li > a:hover,
+.site-nav > ul > li > a:focus-visible{
+  border-color:#e2c86a;                           /* doré plus marqué */
+  box-shadow:0 0 8px rgba(226,200,106,.45), 0 6px 18px rgba(0,0,0,.25);
+}
+.site-nav > ul > li > a[aria-current="page"]{
+  border-color:#e2c86a;
+  background:#141821;
+}
+
+/* Supprime toute “puce / trait” parasite sur les items */
+.site-nav li::before,
+.site-nav li::after{ content:none !important; display:none !important; }
+
+/* Bouton burger (mobile) */
+.nav-toggle{
+  display:none; margin-left:auto;
+  font-size:1.25rem; line-height:1;
+  background:transparent; color:#fff;
+  border:1px solid #444; border-radius:8px;
+  padding:.4rem .6rem;
+}
+.nav-toggle .bar{ display:block; width:20px; height:2px; background:#fff; margin:4px 0; }
+
+/* ====== Dropdown (sous-menus) ====== */
+.has-submenu{ position:relative; }
+
+.submenu{
+  display:none;
+  position:absolute; left:0; top:100%;
+  width:100%;
+  margin:0; padding:0;
+  background:#0a0c10;
+  border:1px solid rgba(226,200,106,.25);
+  border-radius:10px;
+  box-shadow:0 12px 24px rgba(0,0,0,.35);
+  z-index:1000;
+
+  opacity:0; visibility:hidden; transform:translateY(6px);
+  transition:opacity .12s ease, transform .12s ease, visibility 0s linear .12s;
+}
+.site-nav > ul > li.has-submenu:hover   > .submenu,
+.site-nav > ul > li.has-submenu:focus-within > .submenu{
+  display:block; opacity:1; visibility:visible; transform:translateY(0);
+  transition:opacity .12s ease, transform .12s ease, visibility 0s;
+}
+/* “pont” invisible pour éviter la perte de hover */
+@media (min-width:769px){
+  .site-nav > ul > li.has-submenu::after{
+    content:""; position:absolute; left:0; right:0; top:100%; height:10px;
+    background:transparent;
+  }
+}
+
+.site-nav .submenu li{ list-style:none; margin:0; padding:0; }
+.site-nav .submenu li + li{ border-top:1px solid rgba(226,200,106,.25); }
+.site-nav .submenu a{
+  display:block; padding:10px 14px;
+  border:none; background:transparent; color:var(--ink);
+}
+
+/* ------- Mobile ------- */
+@media (max-width:768px){
+  .nav-toggle{ display:inline-block; }
+  .site-nav{
+    display:none;
+    position:absolute; left:0; right:0; top:100%;
+    background:rgba(13,15,20,.98);
+    border-bottom:1px solid #222;
+    padding:.75rem 1rem;
+  }
+  .site-nav.open{ display:block; }
+  .site-nav ul{ display:block; }
+  .site-nav li + li{ margin-top:.5rem; }
+  .site-nav a{ display:block; width:100%; padding:12px 14px; border-radius:10px; }
+  .no-scroll{ overflow:hidden; }
+
+  /* Sous-menus à plat en mobile */
+  .submenu{ position:static; display:none; margin:6px 0 0 0; padding:4px 0 6px 10px; border:none; box-shadow:none; background:transparent; }
+  .has-submenu.open > .submenu{ display:block; }
+  .submenu a{ padding:8px 10px; }
+}
+
+/* =========================================================
+   Hero en 2 colonnes (Texte + Puzzle)
+   ========================================================= */
+.hero-grid{ display:grid; gap:24px; align-items:start; }
+
+@media (min-width:1000px){
+  .hero-grid{ grid-template-columns:minmax(0, 1fr) 380px; } /* texte flexible + puzzle fixe */
+  .hero-right{ min-width:0; display:flex; justify-content:flex-end; }
+  .hero-right iframe{
+    width:100%; height:420px; border:0; border-radius:8px; box-shadow:var(--shadow); display:block; background:transparent;
+  }
+}
+@media (max-width:999px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .hero-right{ margin-top:16px; }
+}
+
+/* =========================================================
+   Logo dans le contenu des pages
+   ========================================================= */
+.content img.logo,
+main img.logo{
+  max-width:280px; height:auto; display:block; margin:1rem auto;
+}
+
+/* =========================================================
+   Fonds d’écran par page
+   ========================================================= */
+body[class^="page-"]{
+  --page-bg:none;
+  background-image:
+    linear-gradient(rgba(0,0,0,.89), rgba(0,0,0,.89)),
+    var(--page-bg);
+  background-repeat:no-repeat,no-repeat;
+  background-position:center center, center center;
+  background-attachment:fixed,fixed;
+  background-size:cover,cover;
+}
+body.page-index   { --page-bg:url('/assets/bg-index.jpg'); }
+body.page-about   { --page-bg:url('/assets/bg-about.jpg'); }
+body.page-agenda  { --page-bg:url('/assets/bg-agenda.jpg'); }
+body.page-contact { --page-bg:url('/assets/bg-contact.jpg'); }
+body.page-adhesion{ --page-bg:url('/assets/bg-adhesion.jpg'); }
+body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
+
+/* ====== Kit d’alignement global ====== */
+html{ overflow-y:auto; }                    /* (rappel) */
+.site-content{ padding-top:16px; }
+.container > *:first-child{ margin-top:0; }
+.container > *:last-child{ margin-bottom:0; }
+.section-title, .container h1:first-child{ margin-top:0; }
+.card{ margin-top:16px; }
+
+.container p[style*="margin"]{ margin:8px 0 !important; }
+.card p[style*="margin"]{ margin:8px 0 !important; }
+
+.card > *:first-child{ margin-top:0; }
+.card > *:last-child{ margin-bottom:0; }
+.card ul{ margin:0; padding-left:1.1em; }
+.card li{ margin:4px 0; }
+
+/* ===== Rangée des 3 cartes de la home ===== */
+.home-cards{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:24px;
+  align-items:start;
+  margin:32px 0;
+}
+
+/* 2e rangée : 2 colonnes */
+.audience-cards{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  align-items:start;
+  margin:32px 0;
+}
+.home-cards .card,
+.audience-cards .card{ display:flex; flex-direction:column; height:100%; margin:0; }
+@media (min-width:900px){
+  .home-cards .card,
+  .audience-cards .card{ min-height:180px; }
+}
+
+/* --------- Icône mail ----------------------------------- */
+.icon-mail{
+  width:22px; height:auto; margin-right:8px;
+  vertical-align:middle; border-radius:4px; object-fit:contain;
+}
+
+/* =========================================================
+   Footer – toujours en bas, aligné à gauche
+   ========================================================= */
+.site-footer{
+  margin-top:auto;               /* pousse au bas de la page */
+  width:100%;
+  padding:12px 24px;
+  background:#0a0c10;           /* même teinte que le header */
+  border-top:1px solid var(--border);
+  text-align:left;              /* coin bas-gauche */
+  font-size:.9rem;
+  color:var(--muted);
+}
+.site-footer p{ margin:0; }
+/* === HEADER : respiration et espace côté bords (desktop) === */
+@media (min-width: 900px){
+  .site-header{
+    padding: 20px 0;                 /* barre un peu plus haute */
+  }
+  .site-header .container{
+    max-width: 1200px;                /* petite marge de manœuvre */
+    padding-left: 48px;               /* air côté gauche */
+    padding-right: 48px;              /* air côté droit */
+  }
+  .site-nav > ul{
+    gap: 30px;                        /* écart confortable entre boutons */
+  }
+  .site-header .site-nav > ul > li > a{
+    padding: 14px 32px !important;    /* boutons un peu plus larges */
+  }
+}
+/* ===== Effet lumineux sur les liens de sous-menu ===== */
+.site-nav .submenu a{
+  position: relative;
+  border-radius: 8px;
+  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+/* Survol + focus clavier */
+.site-nav .submenu a:hover,
+.site-nav .submenu a:focus-visible{
+  background: #141821;                       /* léger fond sombre */
+  color: #ffd86b;                             /* texte doré, comme le top menu */
+  box-shadow: 
+    inset 0 0 0 1px rgba(226,200,106,.45),   /* liseré doré interne */
+    0 0 8px rgba(226,200,106,.35);           /* halo doux autour */
+  outline: none;                              /* on laisse le focus visible via le halo */
+}
+
+/* État actif si la page du sous-menu est courante */
+.site-nav .submenu a[aria-current="page"]{
+  background: #141821;
+  color: #ffd86b;
+  box-shadow: inset 0 0 0 1px #e2c86a;
+}

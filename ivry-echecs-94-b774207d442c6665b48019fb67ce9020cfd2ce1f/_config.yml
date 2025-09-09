@@ -1,0 +1,18 @@
+title: "Ivry Échecs 94"
+description: "Club d’échecs à Ivry-sur-Seine : initiation, progression, convivialité et compétitions."
+
+# Domaine principal (sans slash final)
+url: "https://ivry-echecs.netlify.app"
+
+# Important : baseurl doit être vide pour Netlify
+baseurl: ""
+
+markdown: kramdown
+exclude:
+  - node_modules
+  - README.md
+
+permalink: pretty
+include:
+  - admin
+  - _redirects
