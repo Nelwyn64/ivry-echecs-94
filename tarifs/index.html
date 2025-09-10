@@ -18,11 +18,14 @@
 <body class="page-tarifs">
 
   <!-- Header -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="site-logo" href="/" aria-label="Accueil">
-        <img src="/assets/logo.png" alt="Ivry Échecs 94" loading="lazy" />
-      </a>
+  <div id="header"></div>
+<script>
+  fetch("/header.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("header").innerHTML = data;
+    });
+</script>
 
       <!-- Bouton burger -->
       <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
