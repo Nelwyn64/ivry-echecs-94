@@ -112,6 +112,9 @@ body.page-index .hero .cta{ margin-top:18px; }
 }
 .header-inner{ display:flex; align-items:center; gap:16px; }
 .site-logo img{ max-height:48px; display:block; }
+.logo {
+  margin-left: 0px;   /* réduit l'espace à gauche */
+}
 
 /* Nav (desktop) */
 .site-nav{ margin-left:auto; }
@@ -141,6 +144,24 @@ body.page-index .hero .cta{ margin-top:18px; }
 .site-nav > ul > li > a[aria-current="page"]{
   border-color:#e2c86a;
   background:#141821;
+}
+.site-nav ul {
+  display: flex;
+  justify-content: flex-end; /* espace optimisé à droite */
+  gap: 20px; /* espace homogène entre les boutons */
+}
+
+.site-nav ul li a {
+  display: inline-block;
+  min-width: 120px; /* largeur minimale pour éviter retour à la ligne */
+  text-align: center; /* centrer le texte dans chaque bouton */
+  padding: 10px 15px;
+  white-space: nowrap; /* interdit le passage à la ligne */
+}
+@media (max-width: 768px) {
+  .site-nav ul li a {
+    min-width: auto; /* pas de largeur forcée sur mobile */
+  }
 }
 
 /* Supprime toute “puce / trait” parasite sur les items */
