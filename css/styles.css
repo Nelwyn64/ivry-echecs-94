@@ -144,7 +144,7 @@ body.page-index .hero .cta{ margin-top:18px; }
 .site-nav > ul > li > a[aria-current="page"]{
   border-color:#e2c86a;
   background:#141821;
-  
+
   /* Correction du petit décalage au clic (focus) */
 .site-nav > ul > li > a {
   outline: none;                 /* supprime le halo bleu par défaut */
@@ -286,6 +286,20 @@ body[class^="page-"]{
   background-position:center center, center center;
   background-attachment:fixed,fixed;
   background-size:cover,cover;
+  
+  /* ================================================
+   Logo collé à gauche dans la barre de navigation
+   ================================================ */
+.site-logo {
+  margin-left: 0;   /* enlève la marge gauche */
+  padding-left: 0;  /* enlève le padding interne éventuel */
+  display: inline-block;
+}
+
+header {
+  padding-left: 0;  /* enlève le padding gauche du header */
+}
+
 }
 body.page-index   { --page-bg:url('/assets/bg-index.jpg'); }
 body.page-about   { --page-bg:url('/assets/bg-about.jpg'); }
