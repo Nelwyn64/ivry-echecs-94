@@ -376,6 +376,26 @@ html{ overflow-y:auto; }                    /* (rappel) */
     0 0 8px rgba(226,200,106,.35);           /* halo doux autour */
   outline: none;                              /* on laisse le focus visible via le halo */
 }
+/* Conteneur du sous-menu */
+.site-nav ul li {
+  position: relative;
+}
+
+/* Sous-menu */
+.site-nav ul li ul.submenu {
+  position: absolute;
+  top: 100%;   /* colle le sous-menu juste sous le bouton */
+  left: 0;
+  margin: 0;
+  padding: 0;
+  display: none;  /* caché par défaut */
+  z-index: 999;
+}
+
+/* Affiche au survol */
+.site-nav ul li:hover > ul.submenu {
+  display: block;
+}
 
 /* État actif si la page du sous-menu est courante */
 .site-nav .submenu a[aria-current="page"]{
