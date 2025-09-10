@@ -287,15 +287,6 @@ body[class^="page-"]{
   background-attachment:fixed,fixed;
   background-size:cover,cover;
 
-/* ================================================
-   Logo collé à gauche dans la barre de navigation
-   ================================================ */
-header .site-logo {
-  margin-left: 0 !important;   /* force la suppression de la marge */
-  padding-left: 0 !important;  /* force la suppression du padding */
-  display: inline-block;
-}
-
 header {
   padding-left: 0 !important;  /* supprime aussi le padding du header */
 }
@@ -433,4 +424,15 @@ html{ overflow-y:auto; }                    /* (rappel) */
   background: #141821;
   color: #ffd86b;
   box-shadow: inset 0 0 0 1px #e2c86a;
+}
+/* Forcer le logo complètement à gauche */
+header {
+  display: flex;
+  justify-content: flex-start; /* colle le contenu à gauche */
+  padding-left: 0 !important;  /* supprime le padding du header */
+}
+
+header .site-logo {
+  margin: 0 !important;        /* supprime toute marge */
+  padding: 0 !important;       /* supprime tout padding */
 }
