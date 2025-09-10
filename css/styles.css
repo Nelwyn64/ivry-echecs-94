@@ -286,15 +286,20 @@ body[class^="page-"]{
   background-position:center center, center center;
   background-attachment:fixed,fixed;
   background-size:cover,cover;
-  
-  /* ================================================
+
+/* ================================================
    Logo collé à gauche dans la barre de navigation
    ================================================ */
-.site-logo {
-  margin-left: 0;   /* enlève la marge gauche */
-  padding-left: 0;  /* enlève le padding interne éventuel */
+header .site-logo {
+  margin-left: 0 !important;   /* force la suppression de la marge */
+  padding-left: 0 !important;  /* force la suppression du padding */
   display: inline-block;
 }
+
+header {
+  padding-left: 0 !important;  /* supprime aussi le padding du header */
+}
+
 
 header {
   padding-left: 0;  /* enlève le padding gauche du header */
