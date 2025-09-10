@@ -144,6 +144,18 @@ body.page-index .hero .cta{ margin-top:18px; }
 .site-nav > ul > li > a[aria-current="page"]{
   border-color:#e2c86a;
   background:#141821;
+  
+  /* Correction du petit décalage au clic (focus) */
+.site-nav > ul > li > a {
+  outline: none;                 /* supprime le halo bleu par défaut */
+  border: 1px solid transparent; /* évite qu'une bordure s'ajoute au clic */
+}
+
+.site-nav > ul > li > a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #FFD700; /* halo doré au focus */
+}
+
 }
 .site-nav ul {
   display: flex;
