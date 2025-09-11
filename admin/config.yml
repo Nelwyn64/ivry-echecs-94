@@ -14,64 +14,55 @@ collections:
         name: "accueil"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "about/index.html"
         label: "Le club"
         name: "club"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "about/histoire/index.html"
-        label: "Histoire"
-        name: "histoire"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "about/equipe/index.html"
-        label: "Équipe"
-        name: "equipe"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "about/partenaires/index.html"
-        label: "Partenaires"
-        name: "partenaires"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "agenda/index.html"
         label: "Agenda"
         name: "agenda"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "agenda/calendrier/index.html"
-        label: "Calendrier"
-        name: "calendrier"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "agenda/competition/index.html"
-        label: "Compétition"
-        name: "competition"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "tarifs/index.html"
         label: "Tarifs"
         name: "tarifs"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "adhesion/index.html"
         label: "Adhésion"
         name: "adhesion"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "contact/index.html"
         label: "Contact"
         name: "contact"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
 
       - file: "liens-utiles/index.html"
         label: "Liens utiles"
         name: "liensutiles"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image", required: false }
+
+  - name: "club"
+    label: "Sous-pages du club"
+    folder: "about"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Contenu", name: "body", widget: "markdown" }
+      - { label: "Image", name: "image", widget: "image", required: false }
