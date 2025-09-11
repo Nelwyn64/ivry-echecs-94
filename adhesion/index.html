@@ -3,98 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    Ivry Échecs 94 — Adhésion · Ivry Échecs 94
-  </title>
+  <title>Ivry Échecs 94 — Adhésion · Ivry Échecs 94</title>
   <meta name="robots" content="index,follow" />
-
-  <!-- Feuilles de style -->
   <link rel="stylesheet" href="/css/typography.css">
   <link rel="stylesheet" href="/css/styles.css">
-
-  <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 </head>
 <body class="page-adhesion">
 
-  <!-- Header -->
   <div id="header"></div>
-<script>
-  fetch("/header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    });
-</script>
+  <script>
+    fetch("/header.html")
+      .then(r => r.text())
+      .then(html => { document.getElementById("header").innerHTML = html; });
+  </script>
 
-  <!-- Contenu -->
   <main id="content" class="site-content">
-    <section class="container"><p style="margin:40px 0;"></p>
-  <h1 class="section-title">Adhésion</h1>
-<p style="margin:40px 0;"></p>
-
-  <p>
-    Les inscriptions en ligne se feront via <strong>AssoConnect</strong> (en cours de définition).
-    En attendant, vous pouvez nous écrire à
-    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
-    pour toute question ou pré-inscription.
-  </p>
-<p style="margin:40px 0;"></p>
-
- <div class="card" style="margin-top:16px">
-  <h3>Documents utiles</h3>
-  <ul>
-    <li>📄 Pièce d’identité (ou livret de famille pour les mineurs)</li>
-
-
-<li>📄 
-  <a href="/assets/uploads/attestation_negative.pdf" target="_blank">Attestation de réponses négatives</a>
-  <span style="margin-left:8px; font-style:italic; color:#cccccc; font-size:85%;">
-    (si "non" à toutes les questions ⭢ remettre l'attestation ; si "oui" à une des questions ⭢ remettre un certificat médical)
-  </span>
-</li>
-
-<li>📄 <a href="/assets/uploads/questionnaire_mineur.pdf" target="_blank">Questionnaire de santé — Mineur</a></li>
-<li>📄 <a href="/assets/uploads/questionnaire_majeur.pdf" target="_blank">Questionnaire de santé — Majeur</a></li>
-<li>📄 Règlement de la cotisation (voir la page <a href="/tarifs/">Tarifs</a>)</li>
-
-
-  </ul>
-</div>
-
-<style>
-  /* Liens de la carte Documents utiles */
-  .card a {
-    color: #4da6ff !important;       /* bleu clair */
-    text-decoration: none;
-  }
-  .card a:hover {
-    color: #82c4ff !important;       /* bleu plus clair au survol */
-    text-decoration: underline;
-  }
-
-  /* Lien email (en vert/turquoise clair) */
-  a[href^="mailto:"] {
-    color: #40E0D0 !important;       /* turquoise clair */
-    font-weight: 600;
-  }
-  a[href^="mailto:"]:hover {
-    color: #76EEC6 !important;       /* plus lumineux au survol */
-  }
-</style>
-
-</section>
-
+    <section class="container">
+      <h1 class="section-title">Adhésion</h1>
+      <p>Les modalités d’adhésion seront publiées prochainement. Consultez la page <a href="/tarifs/">Tarifs</a> pour les montants et types de licences.</p>
+    </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p>
-    </div>
+    <div class="container"><p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p></div>
   </footer>
 
-  <!-- JS -->
   <script src="/js/main.js" defer></script>
 </body>
 </html>
