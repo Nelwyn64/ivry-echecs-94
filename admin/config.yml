@@ -21,28 +21,35 @@ collections:
         label: "Agenda"
         name: "agenda"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
-          - { label: "Événements", name: "body", widget: "markdown" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "tarifs/index.html"
         label: "Tarifs"
         name: "tarifs"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "adhesion/index.html"
         label: "Adhésion"
         name: "adhesion"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "contact/index.html"
         label: "Contact"
         name: "contact"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "liens-utiles/index.html"
+        label: "Liens utiles"
+        name: "liens-utiles"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
   - name: "club"
@@ -50,28 +57,28 @@ collections:
     files:
       - file: "about/index.html"
         label: "Présentation"
-        name: "about"
+        name: "presentation"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "about/histoire/index.html"
         label: "Histoire"
         name: "histoire"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "about/equipe/index.html"
         label: "Équipe"
         name: "equipe"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "about/partenaires/index.html"
         label: "Partenaires"
         name: "partenaires"
         fields:
-          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
