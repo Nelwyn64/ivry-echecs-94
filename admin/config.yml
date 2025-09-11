@@ -20,10 +20,35 @@ collections:
         name: "club"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "about/histoire/index.html"
+        label: "Histoire"
+        name: "histoire"
+        fields:
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "about/equipe/index.html"
+        label: "Équipe"
+        name: "equipe"
+        fields:
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "about/partenaires/index.html"
+        label: "Partenaires"
+        name: "partenaires"
+        fields:
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "agenda/index.html"
         label: "Agenda"
         name: "agenda"
+        fields:
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "agenda/calendrier/index.html"
+        label: "Calendrier"
+        name: "calendrier"
+        fields:
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "agenda/competition/index.html"
+        label: "Compétition"
+        name: "competition"
         fields:
           - { label: "Contenu", name: "body", widget: "markdown" }
 
