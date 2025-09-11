@@ -7,63 +7,46 @@ public_folder: "/assets/uploads"
 
 collections:
   - name: "pages"
-    label: "Pages principales"
+    label: "Pages du site"
     files:
       - file: "index.html"
         label: "Accueil"
         name: "accueil"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
-          - { label: "Texte d’introduction (sous le titre)", name: "lead", widget: "text", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "about/index.html"
         label: "Le club"
         name: "club"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "agenda/index.html"
         label: "Agenda"
         name: "agenda"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
-          - { label: "Contenu (liste d’événements)", name: "body", widget: "markdown" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "tarifs/index.html"
         label: "Tarifs"
         name: "tarifs"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
-          - { label: "Contenu (tableau/texte)", name: "body", widget: "markdown" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "adhesion/index.html"
         label: "Adhésion"
         name: "adhesion"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "contact/index.html"
         label: "Contact"
         name: "contact"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
-          - { label: "Contenu (texte + formulaire)", name: "body", widget: "markdown" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "liens-utiles/index.html"
         label: "Liens utiles"
         name: "liensutiles"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
-
-  - name: "club"
-    label: "Le club"
-    folder: "about"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
-      - { label: "Contenu", name: "body", widget: "markdown" }
