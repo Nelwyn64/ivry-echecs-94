@@ -443,3 +443,9 @@ header .site-logo {
 #header.ready {
   visibility: visible;
 }
+/* DEBUG: rendre visible le header à coup sûr */
+.site-header { position: sticky; top: 0; z-index: 100; background:#0a0c10; }
+.header-inner { display: flex; align-items: center; gap: 16px; }
+
+/* si un overflow ou un margin-top négatif masque le header */
+body { overflow-x: hidden; }
