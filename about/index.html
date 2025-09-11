@@ -23,9 +23,7 @@
   fetch("/header.html")
     .then(response => response.text())
     .then(data => {
-      const header = document.getElementById("header");
-      header.innerHTML = data;
-      header.classList.add("ready"); // affiche seulement une fois chargé
+      document.getElementById("header").innerHTML = data;
     });
 </script>
 
