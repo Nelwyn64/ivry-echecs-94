@@ -436,3 +436,13 @@ header .site-logo {
   margin: 0 !important;        /* supprime toute marge */
   padding: 0 !important;       /* supprime tout padding */
 }
+/* ============================================= */
+/* === Images dans le contenu principal du site === */
+/* ============================================= */
+.site-content img {
+  max-width: 600px;   /* largeur maximale */
+  width: 100%;        /* responsive */
+  height: auto;       /* garde les proportions */
+  display: block;     /* évite les décalages */
+  margin: 1em auto;   /* centre l’image */
+}
