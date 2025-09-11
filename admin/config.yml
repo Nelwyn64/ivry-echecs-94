@@ -13,72 +13,57 @@ collections:
         label: "Accueil"
         name: "accueil"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Texte d’introduction", name: "lead", widget: "text", required: false }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
+          - { label: "Texte d’introduction (sous le titre)", name: "lead", widget: "text", required: false }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+
+      - file: "about/index.html"
+        label: "Le club"
+        name: "club"
+        fields:
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "agenda/index.html"
         label: "Agenda"
         name: "agenda"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
+          - { label: "Contenu (liste d’événements)", name: "body", widget: "markdown" }
 
       - file: "tarifs/index.html"
         label: "Tarifs"
         name: "tarifs"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
+          - { label: "Contenu (tableau/texte)", name: "body", widget: "markdown" }
 
       - file: "adhesion/index.html"
         label: "Adhésion"
         name: "adhesion"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
       - file: "contact/index.html"
         label: "Contact"
         name: "contact"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
+          - { label: "Contenu (texte + formulaire)", name: "body", widget: "markdown" }
 
       - file: "liens-utiles/index.html"
         label: "Liens utiles"
-        name: "liens-utiles"
+        name: "liensutiles"
         fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
+          - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
           - { label: "Contenu", name: "body", widget: "markdown" }
 
   - name: "club"
     label: "Le club"
-    files:
-      - file: "about/index.html"
-        label: "Présentation"
-        name: "presentation"
-        fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-
-      - file: "about/histoire/index.html"
-        label: "Histoire"
-        name: "histoire"
-        fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-
-      - file: "about/equipe/index.html"
-        label: "Équipe"
-        name: "equipe"
-        fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
-
-      - file: "about/partenaires/index.html"
-        label: "Partenaires"
-        name: "partenaires"
-        fields:
-          - { label: "Titre (onglet)", name: "title", widget: "string" }
-          - { label: "Contenu", name: "body", widget: "markdown" }
+    folder: "about"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre (onglet)", name: "title", widget: "string", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
