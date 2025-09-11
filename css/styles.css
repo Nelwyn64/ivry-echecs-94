@@ -436,18 +436,10 @@ header .site-logo {
   margin: 0 !important;        /* supprime toute marge */
   padding: 0 !important;       /* supprime tout padding */
 }
-/* Empêche les images résiduelles au clic sur les boutons du menu */
-.site-nav a {
-  outline: none;              /* pas de halo bleu au clic */
-  border: 1px solid transparent; /* évite l'ajout/suppression de bordures */
+/* Masque le header tant qu'il n'est pas prêt */
+#header {
+  visibility: hidden;
 }
-
-.site-nav a:focus {
-  outline: none;
-  box-shadow: none;           /* pas de flash lumineux par défaut */
-}
-
-.site-nav a:active {
-  transform: none !important; /* supprime tout "saut" de position */
-  box-shadow: none !important;
+#header.ready {
+  visibility: visible;
 }
