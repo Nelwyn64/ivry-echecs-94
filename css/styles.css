@@ -371,8 +371,8 @@ html{ overflow-y:auto; }                    /* (rappel) */
   }
   .site-header .container{
     max-width: 1200px;                /* petite marge de manœuvre */
-    padding-left: 48px;               /* air côté gauche */
-    padding-right: 48px;              /* air côté droit */
+    padding-left: 16px;               /* air côté gauche */
+    padding-right: 16px;              /* air côté droit */
   }
   .site-nav > ul{
     gap: 30px;                        /* écart confortable entre boutons */
@@ -440,7 +440,7 @@ header .site-logo {
 /* === Images dans le contenu principal du site === */
 /* ============================================= */
 .site-content img {
-  max-width: 600px;   /* largeur maximale */
+  max-width: 400px;   /* largeur maximale */
   width: 100%;        /* responsive */
   height: auto;       /* garde les proportions */
   display: block;     /* évite les décalages */
