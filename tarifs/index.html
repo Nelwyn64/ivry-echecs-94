@@ -1,54 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Ivry Échecs – Tarifs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivry Échecs 94 — Tarifs · Ivry Échecs 94</title>
-  <meta name="robots" content="index,follow" />
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body class="page-tarifs">
-
-  <div id="header"></div>
-  <script>
-    fetch("/header.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("header").innerHTML = html; });
-  </script>
-
-  <main id="content" class="site-content">
-    <section class="container">
-      <h1 class="section-title">Tarifs & inscriptions</h1>
-      <div class="glass" style="padding:12px 16px;">
-        <table class="glass-table">
-          <thead>
-            <tr><th>Type de licence</th><th>Jeunes (&lt; 20 ans)</th><th>Adultes</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Loisirs (sans cours)</td><td>25 €</td><td>35 €</td></tr>
-            <tr><td>Compétitions (sans cours)</td><td>45 €</td><td>75 €</td></tr>
-            <tr><td>Avec cours</td><td>100 €</td><td>130 €</td></tr>
-            <tr><td>Avec cours (étudiants, retraités, 2ᵉ membre famille)</td><td>70 €</td><td>90 €</td></tr>
-          </tbody>
-          <tfoot>
-            <tr><td colspan="3">
-              <em>Pass’Sport — un abattement de 70 € pour les jeunes éligibles (en cours de définition).</em>
-              <p><strong>Infos Pass’Sport :</strong>
-                <a href="/assets/uploads/passsport_2025_2026_infos.pdf" target="_blank">👉 Voir le document</a>
-              </p>
-            </td></tr>
-          </tfoot>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container"><p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p></div>
+<body>
+  <header id="site-header"></header>
+  <main id="site-content" class="site-content"></main>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
-
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>

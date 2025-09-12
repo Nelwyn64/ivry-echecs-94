@@ -1,88 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Page introuvable – Ivry Échecs</title>
+  <meta name="robots" content="noindex" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    Page introuvable — Ivry Échecs 94 · Ivry Échecs 94
-  </title>
-  <meta name="robots" content="index,follow" />
-
-  <!-- Feuilles de style -->
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    /* Quand Netlify sert 404.html pour n'importe quelle URL,
+       on remplace l'URL affichée par /404 pour que include.js
+       charge /content/404.md automatiquement. */
+    try { history.replaceState(null, "", "/404"); } catch(e) {}
+  </script>
 </head>
-<body class="">
-
-  <!-- Header -->
-  <div id="header"></div>
-<script>
-  fetch("/header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    });
-</script>
-
-      <!-- Bouton burger -->
-      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
-        <span class="sr-only">Menu</span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
-      <!-- Navigation principale -->
-      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation principale">
-        <ul>
-          <li><a href="/" >Accueil</a></li>
-
-          <li class="has-submenu">
-            <a href="/about/" >Le club</a>
-            <ul class="submenu">
-              <li><a href="/about/histoire/">Histoire</a></li>
-              <li><a href="/about/equipe/">Équipe</a></li>
-              <li><a href="/about/partenaires/">Partenaires</a></li>
-            </ul>
-          </li>
-
-          <li class="has-submenu">
-            <a href="/agenda/" >Agenda</a>
-            <ul class="submenu">
-              <li><a href="/agenda/calendrier/">Calendrier</a></li>
-              <li><a href="/agenda/competition/">Compétition</a></li>
-            </ul>
-          </li>
-
-          <li><a href="/tarifs/" >Tarifs</a></li>
-          <li><a href="/adhesion/" >Adhésion</a></li>
-          <li><a href="/contact/" >Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Contenu -->
-  <main id="content" class="site-content">
-    <section class="container" style="padding:64px 0">
-  <h1>Oups, page introuvable (404)</h1>
-  <p>La page demandée n’existe pas ou a été déplacée.</p>
-  <p><a class="btn" href="/index.html">← Retour à l’accueil</a></p>
-</section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p>
-    </div>
+<body>
+  <header id="site-header"></header>
+  <main id="site-content" class="site-content"></main>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
-
-  <!-- JS -->
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>

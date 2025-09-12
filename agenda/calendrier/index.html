@@ -1,53 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Ivry Échecs – Calendrier</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    Calendrier · Ivry Échecs 94
-  </title>
-  <meta name="robots" content="index,follow" />
-
-  <!-- Feuilles de style -->
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body class="page-agenda">
-
-  <!-- Header -->
-  <div id="header"></div>
-<script>
-  fetch("/header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    });
-</script>
-
-  <!-- Contenu -->
-  <main id="content" class="site-content">
-    <h1 id="calendrier-des-événements">Calendrier des événements</h1>
-
-<p>Retrouvez ici les dates importantes du club :</p>
-<ul>
-  <li>Entraînements hebdomadaires</li>
-  <li>Tournois internes</li>
-  <li>Sorties et événements spéciaux</li>
-</ul>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p>
-    </div>
+<body>
+  <header id="site-header"></header>
+  <main id="site-content" class="site-content"></main>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
-
-  <!-- JS -->
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>
