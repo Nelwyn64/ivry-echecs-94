@@ -1,70 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Ivry Échecs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivry Échecs 94 – Accueil · Ivry Échecs 94</title>
-  <meta name="robots" content="index,follow" />
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body class="page-index">
+<body>
+  <header id="site-header"></header>
 
-  <div id="header"></div>
-  <script>
-    fetch("/header.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("header").innerHTML = html; });
-  </script>
+  <main id="site-content" class="site-content"></main>
 
-  <main id="content" class="site-content">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-left">
-          <h1>Ivry Échecs 94</h1>
-          <p class="lead">« Chaque partie d’échecs est un défi à relever, un plaisir à partager et un savoir à transmettre. »</p>
-          <div class="cta">
-            <a class="btn" href="/tarifs/">Voir les tarifs & s’inscrire</a>
-            <a class="btn" href="/contact/">Nous contacter</a>
-          </div>
-        </div>
-        <div class="hero-right">
-          <iframe src="https://lichess.org/training/frame" title="Puzzle du jour Lichess" allowtransparency="true" frameborder="0"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section class="container home-cards">
-      <div class="card"><h3>Horaires</h3><p>En cours de définition (rentrée 2025).</p></div>
-      <div class="card"><h3>Lieu</h3><p>Ivry-sur-Seine – Salle municipale (à confirmer).</p></div>
-      <div class="card">
-        <h3>Contact</h3>
-        <p><img src="/assets/icon-mail.png" class="icon-mail" style="height:1em;vertical-align:middle;"> ivry-echecs94@mail.com <br> 0643429708</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <h2 class="section-title">Actualités</h2>
-        <ul class="news">
-          <li><time datetime="2025-09-01">Septembre 2025</time> <strong>Reprise des cours et entraînements</strong> — inscriptions ouvertes.</li>
-          <li><time datetime="2025-09-07">7 septembre 2025</time> <strong>Forum des associations (Ivry)</strong> — venez nous rencontrer !</li>
-          <li><time datetime="2025-10-15">Octobre 2025</time> <strong>Tournoi interne</strong> — préparation en cours (infos à venir).</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="container audience-cards">
-      <div class="card"><h3>Pour les enfants</h3><p>Ateliers d’initiation, pédagogie ludique, créneaux dédiés. Mixité et inclusion au cœur du projet.</p></div>
-      <div class="card"><h3>Pour les adultes</h3><p>Jeu libre, entraînements, équipes de compétition et événements intergénérationnels.</p></div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container"><p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p></div>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
 
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>

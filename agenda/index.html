@@ -1,39 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Ivry Échecs – Agenda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivry Échecs 94 – Agenda · Ivry Échecs 94</title>
-  <meta name="robots" content="index,follow" />
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body class="page-agenda">
-
-  <div id="header"></div>
-  <script>
-    fetch("/header.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("header").innerHTML = html; });
-  </script>
-
-  <main id="content" class="site-content">
-    <section class="container">
-      <h1 class="section-title">Agenda & événements</h1>
-      <p>Retrouvez les prochaines compétitions, ateliers et rencontres organisés par le club.</p>
-      <ul class="agenda-list">
-        <li><strong>Samedi 15 octobre</strong> – Tournoi interne d’automne</li>
-        <li><strong>Mercredi 2 novembre</strong> – Atelier initiation enfants</li>
-        <li><strong>Samedi 12 novembre</strong> – Rencontre interclubs</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container"><p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p></div>
+<body>
+  <header id="site-header"></header>
+  <main id="site-content" class="site-content"></main>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
-
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>

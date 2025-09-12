@@ -1,49 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Ivry Échecs – Contact</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ivry Échecs 94 — Contact · Ivry Échecs 94</title>
-  <meta name="robots" content="index,follow" />
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body class="page-contact">
-
-  <div id="header"></div>
-  <script>
-    fetch("/header.html")
-      .then(r => r.text())
-      .then(html => { document.getElementById("header").innerHTML = html; });
-  </script>
-
-  <main id="content" class="site-content">
-    <section class="container">
-      <h1>Contact</h1>
-      <p>Besoin d’informations ? Écrivez-nous avec le formulaire ci-dessous.</p>
-
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci">
-        <input type="hidden" name="form-name" value="contact">
-        <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
-
-        <p><label for="name">Nom<br><input id="name" type="text" name="name" required autocomplete="name"></label></p>
-        <p><label for="email">Email<br><input id="email" type="email" name="email" required autocomplete="email"></label></p>
-        <p><label for="message">Message<br><textarea id="message" name="message" rows="6" required></textarea></label></p>
-        <p><button class="btn" type="submit">Envoyer</button></p>
-      </form>
-
-      <p style="margin-top:16px">
-        Ou écrivez-nous directement :
-        <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container"><p>&copy; 2025 Ivry Échecs 94 — Tous droits réservés.</p></div>
+<body>
+  <header id="site-header"></header>
+  <main id="site-content" class="site-content"></main>
+  <footer id="site-footer">
+    © Ivry Échecs 94 – Tous droits réservés •
+    <a href="mailto:ivryechecs@gmail.com">ivryechecs@gmail.com</a>
   </footer>
-
-  <script src="/js/main.js" defer></script>
+  <script src="/js/include.js"></script>
 </body>
 </html>
