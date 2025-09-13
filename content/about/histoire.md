@@ -1,6 +1,6 @@
 ---
 title: Histoire · Ivry Échecs 94
-cover: /assets/uploads/cavalier-sort-de-l-oeuf.png
+cover: ""
 ---
 <section class="container">
 <h1 class="section-title">Histoire du club</h1>
