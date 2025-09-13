@@ -49,7 +49,6 @@ main.site-content{ flex:1 0 auto; }  /* pousse le footer en bas */
 
 /* --------- Hero ----------------------------------------- */
 .hero{ padding: 28px 0 36px; }
-
 body.page-index .hero h1{
   margin:0 0 18px 0;
   font-size:clamp(28px, 3.1vw, 42px);
@@ -104,27 +103,36 @@ body.page-index .hero .cta{ margin-top:18px; }
 .gallery img{ width:100%; border-radius:10px; box-shadow:var(--shadow); }
 
 /* =========================================================
-   Header & Navigation
+   Header & Navigation (couvre #site-header ET .site-header)
    ========================================================= */
-.site-header{
+#site-header, .site-header{
   position:sticky; top:0; z-index:50;
   background:#0a0c10; color:#fff; border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:16px;
 }
 .header-inner{ display:flex; align-items:center; gap:16px; }
 .site-logo img{ max-height:48px; display:block; }
-.logo {
-  margin-left: 0px;   /* réduit l'espace à gauche */
-}
+.logo{ margin-left:0; }
 
-/* Nav (desktop) */
-.site-nav{ margin-left:auto; }
-.site-nav > ul{
-  display:flex; gap:28px;   /* aération */
+/* Nav conteneur : occupe l'espace et centre les items */
+#site-header nav, .site-header nav, .site-nav{
+  flex:1 1 auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;   /* <-- plus de trou à droite */
+  gap:28px;
+}
+.site-nav > ul,
+#site-header nav > ul,
+.site-header nav > ul{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:28px;
   list-style:none; margin:0; padding:0;
 }
 
 /* Boutons de 1er niveau */
-.site-nav > ul > li > a{
+.site-nav > ul > li > a,
+#site-header nav > ul > li > a,
+.site-header nav > ul > li > a{
   display:inline-block;
   padding:14px 28px;
   border:1px solid #e2c86a3d;      /* encadré discret */
@@ -137,58 +145,34 @@ body.page-index .hero .cta{ margin-top:18px; }
   transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
 }
 .site-nav > ul > li > a:hover,
-.site-nav > ul > li > a:focus-visible{
+#site-header nav > ul > li > a:hover,
+.site-header nav > ul > li > a:hover,
+.site-nav > ul > li > a:focus-visible,
+#site-header nav > ul > li > a:focus-visible,
+.site-header nav > ul > li > a:focus-visible{
   border-color:#e2c86a;                           /* doré plus marqué */
   box-shadow:0 0 8px rgba(226,200,106,.45), 0 6px 18px rgba(0,0,0,.25);
+  outline:none;
 }
-.site-nav > ul > li > a[aria-current="page"]{
+
+/* Lien actif */
+.site-nav > ul > li > a[aria-current="page"],
+#site-header nav > ul > li > a[aria-current="page"],
+.site-header nav > ul > li > a[aria-current="page"]{
   border-color:#e2c86a;
   background:#141821;
-
-  /* Correction du petit décalage au clic (focus) */
-.site-nav > ul > li > a {
-  outline: none;                 /* supprime le halo bleu par défaut */
-  border: 1px solid transparent; /* évite qu'une bordure s'ajoute au clic */
 }
 
-.site-nav > ul > li > a:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #FFD700; /* halo doré au focus */
-}
-
-}
-.site-nav ul {
-  display: flex;
-  justify-content: flex-end; /* espace optimisé à droite */
-  gap: 20px; /* espace homogène entre les boutons */
-}
-
-.site-nav ul li a {
-  display: inline-block;
-  min-width: 120px; /* largeur minimale pour éviter retour à la ligne */
-  text-align: center; /* centrer le texte dans chaque bouton */
-  padding: 10px 15px;
-  white-space: nowrap; /* interdit le passage à la ligne */
-}
-@media (max-width: 768px) {
-  .site-nav ul li a {
-    min-width: auto; /* pas de largeur forcée sur mobile */
-  }
+/* Focus clavier accessible */
+.site-nav > ul > li > a:focus,
+#site-header nav > ul > li > a:focus,
+.site-header nav > ul > li > a:focus{
+  outline:none;
+  box-shadow:0 0 0 2px #FFD700;
 }
 
 /* Supprime toute “puce / trait” parasite sur les items */
-.site-nav li::before,
-.site-nav li::after{ content:none !important; display:none !important; }
-
-/* Bouton burger (mobile) */
-.nav-toggle{
-  display:none; margin-left:auto;
-  font-size:1.25rem; line-height:1;
-  background:transparent; color:#fff;
-  border:1px solid #444; border-radius:8px;
-  padding:.4rem .6rem;
-}
-.nav-toggle .bar{ display:block; width:20px; height:2px; background:#fff; margin:4px 0; }
+.site-nav li::before, .site-nav li::after{ content:none !important; display:none !important; }
 
 /* ====== Dropdown (sous-menus) ====== */
 .has-submenu{ position:relative; }
@@ -225,9 +209,33 @@ body.page-index .hero .cta{ margin-top:18px; }
 .site-nav .submenu a{
   display:block; padding:10px 14px;
   border:none; background:transparent; color:var(--ink);
+  position:relative;
+  border-radius:8px;
+  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.site-nav .submenu a:hover,
+.site-nav .submenu a:focus-visible{
+  background:#141821;
+  color:#ffd86b;
+  box-shadow: inset 0 0 0 1px rgba(226,200,106,.45), 0 0 8px rgba(226,200,106,.35);
+  outline:none;
+}
+.site-nav .submenu a[aria-current="page"]{
+  background:#141821;
+  color:#ffd86b;
+  box-shadow: inset 0 0 0 1px #e2c86a;
 }
 
 /* ------- Mobile ------- */
+.nav-toggle{
+  display:none; margin-left:auto;
+  font-size:1.25rem; line-height:1;
+  background:transparent; color:#fff;
+  border:1px solid #444; border-radius:8px;
+  padding:.4rem .6rem;
+}
+.nav-toggle .bar{ display:block; width:20px; height:2px; background:#fff; margin:4px 0; }
+
 @media (max-width:768px){
   .nav-toggle{ display:inline-block; }
   .site-nav{
@@ -286,16 +294,6 @@ body[class^="page-"]{
   background-position:center center, center center;
   background-attachment:fixed,fixed;
   background-size:cover,cover;
-
-header {
-  padding-left: 0 !important;  /* supprime aussi le padding du header */
-}
-
-
-header {
-  padding-left: 0;  /* enlève le padding gauche du header */
-}
-
 }
 body.page-index   { --page-bg:url('/assets/bg-index.jpg'); }
 body.page-about   { --page-bg:url('/assets/bg-about.jpg'); }
@@ -305,7 +303,6 @@ body.page-adhesion{ --page-bg:url('/assets/bg-adhesion.jpg'); }
 body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 
 /* ====== Kit d’alignement global ====== */
-html{ overflow-y:auto; }                    /* (rappel) */
 .site-content{ padding-top:16px; }
 .container > *:first-child{ margin-top:0; }
 .container > *:last-child{ margin-bottom:0; }
@@ -364,85 +361,47 @@ html{ overflow-y:auto; }                    /* (rappel) */
   color:var(--muted);
 }
 .site-footer p{ margin:0; }
+
 /* === HEADER : respiration et espace côté bords (desktop) === */
 @media (min-width: 900px){
-  .site-header{
-    padding: 20px 0;                 /* barre un peu plus haute */
+  #site-header, .site-header{ padding:20px 0; }
+  #site-header .container, .site-header .container{
+    max-width:1200px;
+    padding-left:16px;
+    padding-right:16px;
   }
-  .site-header .container{
-    max-width: 1200px;                /* petite marge de manœuvre */
-    padding-left: 16px;               /* air côté gauche */
-    padding-right: 16px;              /* air côté droit */
-  }
-  .site-nav > ul{
-    gap: 30px;                        /* écart confortable entre boutons */
-  }
-  .site-header .site-nav > ul > li > a{
-    padding: 14px 32px !important;    /* boutons un peu plus larges */
-  }
-}
-/* ===== Effet lumineux sur les liens de sous-menu ===== */
-.site-nav .submenu a{
-  position: relative;
-  border-radius: 8px;
-  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+  .site-nav > ul,
+  #site-header nav > ul,
+  .site-header nav > ul{ gap:30px; }
+  .site-nav > ul > li > a,
+  #site-header nav > ul > li > a,
+  .site-header nav > ul > li > a{ padding:14px 32px !important; }
 }
 
-/* Survol + focus clavier */
-.site-nav .submenu a:hover,
-.site-nav .submenu a:focus-visible{
-  background: #141821;                       /* léger fond sombre */
-  color: #ffd86b;                             /* texte doré, comme le top menu */
-  box-shadow: 
-    inset 0 0 0 1px rgba(226,200,106,.45),   /* liseré doré interne */
-    0 0 8px rgba(226,200,106,.35);           /* halo doux autour */
-  outline: none;                              /* on laisse le focus visible via le halo */
-}
-/* Conteneur du sous-menu */
-.site-nav ul li {
-  position: relative;
+/* =============================================
+   Images dans le contenu principal du site
+   ============================================= */
+/* Images éditoriales */
+.site-content img{
+  max-width:100%;
+  height:auto;
 }
 
-/* Sous-menu */
-.site-nav ul li ul.submenu {
-  position: absolute;
-  top: 100%;   /* colle le sous-menu juste sous le bouton */
-  left: 0;
-  margin: 0;
-  padding: 0;
-  display: none;  /* caché par défaut */
-  z-index: 999;
+/* L'icône d'email doit rester petite */
+.site-content img.icon-mail{
+  width:22px;
+  height:auto;
+  display:inline;
+  margin:0 .4em 0 0;
+  vertical-align:middle;
+  border-radius:4px;
+  object-fit:contain;
 }
 
-/* Affiche au survol */
-.site-nav ul li:hover > ul.submenu {
-  display: block;
-}
-
-/* État actif si la page du sous-menu est courante */
-.site-nav .submenu a[aria-current="page"]{
-  background: #141821;
-  color: #ffd86b;
-  box-shadow: inset 0 0 0 1px #e2c86a;
-}
-/* Forcer le logo complètement à gauche */
-header {
-  display: flex;
-  justify-content: flex-start; /* colle le contenu à gauche */
-  padding-left: 0 !important;  /* supprime le padding du header */
-}
-
-header .site-logo {
-  margin: 0 !important;        /* supprime toute marge */
-  padding: 0 !important;       /* supprime tout padding */
-}
-/* ============================================= */
-/* === Images dans le contenu principal du site === */
-/* ============================================= */
-.site-content img {
-  max-width: 400px;   /* largeur maximale */
-  width: 100%;        /* responsive */
-  height: auto;       /* garde les proportions */
-  display: block;     /* évite les décalages */
-  margin: 1em auto;   /* centre l’image */
+/* Cover injectée par include.js : figure.cover > img */
+.site-content .cover img{
+  width:100%;
+  max-height:380px;
+  object-fit:cover;
+  border-radius:12px;
 }

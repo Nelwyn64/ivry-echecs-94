@@ -1,6 +1,6 @@
 ---
-title: "Ivry Échecs 94 – Accueil · Ivry Échecs 94"
-cover: "/assets/icon-mail.png"
+title: "Accueil"
+cover: ""
 ---
 
 <section class="hero">
