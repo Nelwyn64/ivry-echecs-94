@@ -4,65 +4,21 @@ backend:
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
+locale: "fr"
 
 collections:
   - name: "pages"
     label: "Pages du site"
-    files:
-      - file: "index.html"
-        label: "Accueil"
-        name: "accueil"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "about/index.html"
-        label: "Le club"
-        name: "club"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "agenda/index.html"
-        label: "Agenda"
-        name: "agenda"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "tarifs/index.html"
-        label: "Tarifs"
-        name: "tarifs"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "adhesion/index.html"
-        label: "Adhésion"
-        name: "adhesion"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "contact/index.html"
-        label: "Contact"
-        name: "contact"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-      - file: "liens-utiles/index.html"
-        label: "Liens utiles"
-        name: "liensutiles"
-        fields:
-          - { label: "Contenu", name: "body", widget: "markdown" }
-          - { label: "Image", name: "image", widget: "image", required: false }
-
-  - name: "club"
-    label: "Sous-pages du club"
-    folder: "about"
-    create: true
+    label_singular: "Page"
+    folder: "content"           # <- édite /content/**/*.md
+    create: false               # pas de nouvelles pages depuis le CMS
+    format: "frontmatter"
+    extension: "md"
+    nested:
+      depth: 3                  # affiche l'arborescence (about/histoire, etc.)
+      summary: "{{title}}"
     slug: "{{slug}}"
     fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Image de couverture", name: "cover", widget: "image", required: false }
       - { label: "Contenu", name: "body", widget: "markdown" }
-      - { label: "Image", name: "image", widget: "image", required: false }
