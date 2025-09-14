@@ -173,6 +173,24 @@ body.page-index .hero .cta{ margin-top:18px; }
 .site-logo img{ max-height:48px; display:block; }
 .logo{ margin-left:0; }
 
+/* Correction centrage header */
+#site-header, .site-header {
+  justify-content: center;   /* centre le contenu du header */
+  padding-left: 20px;        /* espace côté gauche */
+  padding-right: 20px;       /* équilibre côté droit */
+}
+
+.header-inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo à gauche, menu centré */
+}
+
+.site-logo {
+  margin-right: 20px; /* espace entre logo et menu */
+}
+
 /* Nav */
 #site-header nav, .site-header nav, .site-nav{
   flex:1 1 auto;
