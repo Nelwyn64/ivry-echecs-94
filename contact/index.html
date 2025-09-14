@@ -11,16 +11,30 @@
   <header id="site-header"></header>
 
   <main id="site-content" class="site-content">
-    <section class="container">
-      <h1 class="section-title">Contact</h1>
-      <form name="contact" method="POST" data-netlify="true" action="/merci">
-        <label>Votre nom : <input type="text" name="name" required></label><br>
-        <label>Votre email : <input type="email" name="email" required></label><br>
-        <label>Votre message : <textarea name="message" required></textarea></label><br>
-        <button type="submit" class="btn">Envoyer</button>
-      </form>
-    </section>
-  </main>
+  <section class="container">
+    <h1 class="section-title">Contact</h1>
+
+    <!-- Formulaire statique détectable par Netlify -->
+    <form name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/merci/">
+      <input type="hidden" name="form-name" value="contact">
+
+      <p class="sr-only">
+        <label>Ne pas remplir : <input name="bot-field"></label>
+      </p>
+
+      <p><label>Votre nom : <input type="text" name="name" required></label></p>
+      <p><label>Votre email : <input type="email" name="email" required></label></p>
+      <p><label>Votre message : <textarea name="message" required></textarea></label></p>
+
+      <p><button type="submit" class="btn">Envoyer</button></p>
+    </form>
+  </section>
+</main>
+
 
   <footer id="site-footer">
     © Ivry Échecs 94 – Tous droits réservés •

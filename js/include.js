@@ -67,3 +67,12 @@ fetch(contentFile)
   .catch(() => {
     document.getElementById("site-content").innerHTML = "<p>Contenu introuvable.</p>";
   });
+document.addEventListener('DOMContentLoaded', () => {
+  // ... ton code header/footer ...
+
+  const skipMd = document.body.matches('.page-contact, .page-merci');
+  if (!skipMd) {
+    // <= garde le code EXISTANT qui charge/injecte le Markdown
+    // fetch('content/xxx.md') ...
+  }
+});
