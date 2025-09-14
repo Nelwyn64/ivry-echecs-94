@@ -2,13 +2,9 @@
 title: Ivry Échecs 94 — Le club · Ivry Échecs 94
 cover: ""
 ---
-#  Le club
-
-
+# Le club
 
 Ivry Échecs 94 a pour objectifs :
-
-
 
 \- Développer la pratique du jeu d’échecs sur Ivry-sur-Seine et le Val-de-Marne.  
 
@@ -24,7 +20,7 @@ Ivry Échecs 94 a pour objectifs :
 
 
 
-\## Nos activités
+####  Nos activités
 
 
 
@@ -36,8 +32,4 @@ Ivry Échecs 94 a pour objectifs :
 
 \- Tournois internes  
 
-\- Sorties et événements  
-
-
-
-\---
+\- Sorties et événements
