@@ -404,3 +404,17 @@ body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
   width:22px; height:auto; display:inline; margin:0 .4em 0 0; vertical-align:middle; border-radius:4px; object-fit:contain;
 }
 .site-content .cover img{ width:100%; max-height:380px; object-fit:cover; border-radius:12px; }
+/* =========================================================
+   Liens – couleur uniforme
+   ========================================================= */
+a {
+  color: #3098DC;
+  text-decoration: none; /* retire le soulignement par défaut */
+  transition: color .2s ease;
+}
+
+a:hover,
+a:focus {
+  color: #1d6fa3; /* bleu plus foncé au survol */
+  text-decoration: underline; /* pour indiquer que c'est cliquable */
+}
