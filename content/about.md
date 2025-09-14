@@ -39,6 +39,9 @@ cover: ""
   <div class="aside">
     <img src="/assets/uploads/cavalier-sombrer.png" alt="Cavalier sombre"
          style="max-width:100%; border-radius:8px; margin-bottom:1rem;">
-  </div>
+  <img src="/assets/uploads/roi-sombre.png" alt="Roi sombre"
+         style="max-width:100%; border-radius:8px; margin-bottom:1rem;">
+
+</div>
 
 </main>
