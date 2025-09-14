@@ -6,8 +6,6 @@ cover: ""
 
 
 
-
-
 Ivry Échecs 94 a pour objectifs :
 
 \- Développer la pratique du jeu d’échecs sur Ivry-sur-Seine et le Val-de-Marne.  
@@ -24,11 +22,7 @@ Ivry Échecs 94 a pour objectifs :
 
 
 
-
-
 #### Nos activités
-
-
 
 
 
