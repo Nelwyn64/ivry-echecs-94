@@ -30,4 +30,7 @@ cover: ""
 ℹ️ Certaines rubriques (agenda, compétitions…) sont encore en construction.\
 *Bientôt il y aura plus de coups que de cases vides !*
 
-*<div class="aside">*
+<div class="aside">
+  <img src="/assets/uploads/cavalier-sombrer.png" alt="Cavalier sombre"
+       style="max-width:100%; border-radius:8px; margin-bottom:1rem;">
+</div>
