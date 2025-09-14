@@ -170,7 +170,7 @@ body.page-index .hero .cta{ margin-top:18px; }
   display:flex; align-items:center; gap:16px;
 }
 .header-inner{ display:flex; align-items:center; gap:16px; }
-.site-logo img{ max-height:96px; display:block; }
+.site-logo img{ max-height:72px; display:block; }
 .logo{ margin-left:0; }
 
 /* Correction centrage header */
