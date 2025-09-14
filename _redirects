@@ -1,9 +1,8 @@
 # Forcer l’usage de HTTPS
-http://*   https://:splat   301!
+http://*    https://:splat    301!
 
-# Page de remerciement (redirige /merci et /merci/ vers le fichier merci.html)
-/merci    /merci.html   200
-/merci/   /merci.html   200
+# Page de remerciement (redirige /merci vers merci.html)
+/merci      /merci.html    200
 
 # Gestion des erreurs 404
-/*   /404.html   404
+/*         /404.html       404

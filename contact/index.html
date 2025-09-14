@@ -14,27 +14,19 @@
   <section class="container">
     <h1 class="section-title">Contact</h1>
 
-    <form name="contact" method="POST" data-netlify="true" action="/merci.html">
-      <!-- requis par Netlify Forms -->
-      <input type="hidden" name="form-name" value="contact" />
+    <form name="contact" method="POST" data-netlify="true" action="/merci">
+  <label for="name">Nom :</label>
+  <input type="text" id="name" name="name" required />
 
-      <p>
-        <label for="name">Nom :</label><br>
-        <input type="text" id="name" name="name" required>
-      </p>
+  <label for="email">Email :</label>
+  <input type="email" id="email" name="email" required />
 
-      <p>
-        <label for="email">Email :</label><br>
-        <input type="email" id="email" name="email" required>
-      </p>
+  <label for="message">Message :</label>
+  <textarea id="message" name="message" required></textarea>
 
-      <p>
-        <label for="message">Message :</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea>
-      </p>
+  <button type="submit">Envoyer</button>
+</form>
 
-      <p><button type="submit" class="btn">Envoyer</button></p>
-    </form>
   </section>
 </main>
 
