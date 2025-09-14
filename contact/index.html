@@ -10,26 +10,17 @@
 <body class="page-contact">
   <header id="site-header"></header>
 
-  <main class="site-content">
-  <section class="container">
-    <h1 class="section-title">Contact</h1>
-
-    <form name="contact" method="POST" data-netlify="true" action="/merci">
-  <label for="name">Nom :</label>
-  <input type="text" id="name" name="name" required />
-
-  <label for="email">Email :</label>
-  <input type="email" id="email" name="email" required />
-
-  <label for="message">Message :</label>
-  <textarea id="message" name="message" required></textarea>
-
-  <button type="submit">Envoyer</button>
-</form>
-
-  </section>
-</main>
-
+  <main id="site-content" class="site-content">
+    <section class="container">
+      <h1 class="section-title">Contact</h1>
+      <form name="contact" method="POST" data-netlify="true" action="/merci">
+        <label>Votre nom : <input type="text" name="name" required></label><br>
+        <label>Votre email : <input type="email" name="email" required></label><br>
+        <label>Votre message : <textarea name="message" required></textarea></label><br>
+        <button type="submit" class="btn">Envoyer</button>
+      </form>
+    </section>
+  </main>
 
   <footer id="site-footer">
     © Ivry Échecs 94 – Tous droits réservés •
