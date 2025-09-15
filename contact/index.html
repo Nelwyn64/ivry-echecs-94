@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Ivry Échecs – Contact</title>
+  <title>Contact – Ivry Échecs 94</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="/css/styles.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -10,31 +10,22 @@
 <body class="page-contact">
   <header id="site-header"></header>
 
-  <main id="site-content" class="site-content">
-  <section class="container">
-    <h1 class="section-title">Contact</h1>
+  <!-- data-raw = on ne charge PAS le markdown sur cette page -->
+  <main id="site-content" class="site-content" data-raw>
+    <section class="container">
+      <h1 class="section-title">Contact</h1>
 
-    <!-- Formulaire statique détectable par Netlify -->
-    <form name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          action="/merci/">
-      <input type="hidden" name="form-name" value="contact">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci/">
+        <input type="hidden" name="form-name" value="contact" />
+        <p style="display:none"><label>Ne pas remplir : <input name="bot-field" /></label></p>
 
-      <p class="sr-only">
-        <label>Ne pas remplir : <input name="bot-field"></label>
-      </p>
-
-      <p><label>Votre nom : <input type="text" name="name" required></label></p>
-      <p><label>Votre email : <input type="email" name="email" required></label></p>
-      <p><label>Votre message : <textarea name="message" required></textarea></label></p>
-
-      <p><button type="submit" class="btn">Envoyer</button></p>
-    </form>
-  </section>
-</main>
-
+        <p><label>Votre nom : <input type="text" name="name" required></label></p>
+        <p><label>Votre email : <input type="email" name="email" required></label></p>
+        <p><label>Votre message : <textarea name="message" required></textarea></label></p>
+        <p><button type="submit" class="btn">Envoyer</button></p>
+      </form>
+    </section>
+  </main>
 
   <footer id="site-footer">
     © Ivry Échecs 94 – Tous droits réservés •
