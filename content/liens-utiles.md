@@ -1,7 +1,17 @@
 ---
-title: "Liens utiles - Ivry Échecs 94"
+title: Liens utiles - Ivry Échecs 94
 cover: ""
 ---
+
+
+
+<main class="site-content">
+
+  <!-- Colonne gauche = texte -->
+
+  <div class="main">
+
+
 
 <section class="container">
 <h1 class="section-title">Liens utiles</h1>
