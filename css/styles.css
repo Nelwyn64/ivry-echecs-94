@@ -380,6 +380,7 @@ body.page-agenda  { --page-bg:url('/assets/bg-agenda.jpg'); }
 body.page-contact { --page-bg:url('/assets/bg-contact.jpg'); }
 body.page-adhesion{ --page-bg:url('/assets/bg-adhesion.jpg'); }
 body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
+body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
 
 /* =========================================================
    Contenu principal – lisibilité et marges (+ espace avant footer)
