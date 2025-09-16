@@ -1,21 +1,7 @@
 ---
 title: Contact · Ivry Échecs 94
 ---
-
-
-
-<main class="site-content">
-
-  <!-- Colonne gauche = texte -->
-
-  <div class="main">
-
 <section class="container">
-<h1 class="section-title">Liens utiles</h1>
-
-
-
-
 <h1 class="section-title">Contact</h1>
 <form name="contact" method="POST" data-netlify="true" action="/merci">
   <input type="hidden" name="form-name" value="contact" />
