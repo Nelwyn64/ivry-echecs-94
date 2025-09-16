@@ -101,11 +101,10 @@
     // Gestion message de confirmation
     const form = document.querySelector("form");
     const confirmation = document.querySelector(".form-confirmation");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      form.style.display = "none";
-      confirmation.hidden = false;
-    });
+    form.addEventListener("submit", () => {
+  form.style.display = "none";
+  confirmation.hidden = false;
+});
   </script>
 </body>
 </html>
