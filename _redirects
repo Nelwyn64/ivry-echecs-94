@@ -1,2 +1,5 @@
+# Forcer HTTPS
 http://*    https://:splat   301!
-/*          /404.html        404
+
+# (optionnel) normaliser /merci sans slash -> /merci/
+# /merci    /merci/   200
