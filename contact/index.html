@@ -6,12 +6,48 @@
   <title>Contact · Ivry Échecs 94</title>
   <meta name="robots" content="index,follow" />
 
-  <!-- Feuilles de style -->
+  <!-- Feuilles de style globales -->
   <link rel="stylesheet" href="/css/typography.css">
   <link rel="stylesheet" href="/css/styles.css">
 
   <!-- Favicon -->
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Style spécifique au formulaire -->
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* espace entre les champs */
+      max-width: 400px;
+    }
+
+    form label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+    }
+
+    form input,
+    form textarea,
+    form button {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body class="page-contact">
 
