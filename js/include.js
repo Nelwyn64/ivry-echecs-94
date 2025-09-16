@@ -1,29 +1,36 @@
-// Injecte le header
+// Injecter le header
 fetch("/header.html")
   .then(r => r.text())
-  .then(html => { const h = document.getElementById("site-header"); if (h) h.innerHTML = html; })
-  .catch(() => {});
+  .then(html => {
+    const h = document.getElementById("site-header");
+    if (h) h.innerHTML = html;
+  })
+  .catch(() => { /* silencieux */ });
 
-// Au chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("site-content");
+  if (!container) return;
 
-  // IMPORTANT : si la page fournit déjà son HTML (contact/merci), on NE charge PAS le Markdown
+  // ⛔ Ne pas charger le Markdown si la page fournit déjà son HTML
+  // (ex: /contact/ et /merci/ où on veut du HTML statique)
   const skipMd =
-    (container && container.hasAttribute("data-raw")) ||
+    container.hasAttribute("data-raw") ||
     document.body.matches(".page-contact, .page-merci");
 
-  if (skipMd || !container) return;
+  if (skipMd) return;
 
   // Déduire le fichier Markdown à partir de l’URL
-  const rawPath = window.location.pathname.replace(/\/$/, "");
-  const path = rawPath.replace(/\.html$/, "");
+  const rawPath = window.location.pathname.replace(/\/$/, ""); // supprime "/" final
+  const path = rawPath.replace(/\.html$/, "");                  // supprime ".html"
   const contentFile = "/content" + (path || "/index") + ".md";
 
   fetch(contentFile)
-    .then(r => { if (!r.ok) throw new Error("Not found"); return r.text(); })
+    .then(r => {
+      if (!r.ok) throw new Error("Not found");
+      return r.text();
+    })
     .then(md => {
-      // Front matter simple
+      // Front matter léger: entre --- ... ---
       let meta = {};
       if (md.startsWith("---")) {
         const end = md.indexOf("\n---", 3);
@@ -32,15 +39,49 @@ document.addEventListener("DOMContentLoaded", () => {
           md = md.slice(end + 4).trim();
           fm.split("\n").forEach(line => {
             const i = line.indexOf(":");
-            if (i > -1) meta[line.slice(0,i).trim()] = line.slice(i+1).trim().replace(/^"|"$/g, "");
+            if (i > -1) {
+              const k = line.slice(0, i).trim();
+              const v = line.slice(i + 1).trim().replace(/^"|"$/g, "");
+              meta[k] = v;
+            }
           });
         }
       }
 
-      container.insertAdjacentHTML("beforeend", marked.parse(md));
+      // Convertit le MD -> HTML
+      const html = marked.parse(md);
+
+      // Optionnel: cover si défini dans le front matter
+      if (meta.cover) {
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        img.src = meta.cover;
+        img.alt = meta.title || "";
+        img.loading = "lazy";
+        figure.className = "cover";
+        figure.appendChild(img);
+        container.appendChild(figure);
+      }
+
+      container.insertAdjacentHTML("beforeend", html);
+
+      // Accessibilité & perfs basiques
+      container.querySelectorAll("img").forEach(img => {
+        if (!img.getAttribute("alt")) img.setAttribute("alt", "");
+        img.setAttribute("loading", "lazy");
+        img.style.maxWidth = "100%";
+        img.style.height = "auto";
+        img.style.display = "block";
+        img.style.margin = "12px auto";
+      });
+
+      // Met à jour le <title> si fourni
       if (meta.title) document.title = meta.title + " – Ivry Échecs";
     })
     .catch(() => {
-      if (!container.innerHTML.trim()) container.innerHTML = "<p>Contenu introuvable.</p>";
+      // N’écrase pas un contenu statique existant
+      if (!container.innerHTML.trim()) {
+        container.innerHTML = "<p>Contenu introuvable.</p>";
+      }
     });
 });
