@@ -307,6 +307,45 @@ body.page-index .hero .cta{ margin-top:18px; }
   .submenu a{ padding:8px 10px; }
 }
 
+/* =======================
+   Header – version compacte (desktop)
+   Objectif : tout tenir sur une ligne, centré
+   ======================= */
+@media (min-width: 900px){
+  /* Moins de padding vertical */
+  #site-header, .site-header { padding: 14px 0; }
+
+  /* Réduire le padding latéral du conteneur */
+  #site-header .container,
+  .site-header .container{
+    max-width: 1200px;
+    padding-left: 8px;   /* avant ~16px */
+    padding-right: 8px;  /* avant ~16px */
+  }
+
+  /* Empêcher le retour à la ligne de la nav */
+  .site-nav{ flex-wrap: nowrap; }      /* au lieu de wrap */
+  .site-nav > ul{ gap: 18px; }          /* avant ~28–30px */
+
+  /* Liens un peu plus “fins” */
+  .site-nav > ul > li > a{
+    padding: .75rem 1.2rem;             /* avant .9rem 1.8rem */
+  }
+
+  /* Garder l’alignement centré */
+  #site-header nav, .site-header nav, .site-nav{
+    justify-content: center;
+  }
+}
+
+/* Compactage supplémentaire entre 900 et 1200 px */
+@media (min-width: 900px) and (max-width: 1200px){
+  .site-logo img{ max-height: 44px; }   /* logo un poil plus petit */
+  .site-nav > ul{ gap: 14px; }
+  .site-nav > ul > li > a{ padding: .65rem 1.0rem; }
+}
+
+
 /* =========================================================
    Hero en 2 colonnes
    ========================================================= */
