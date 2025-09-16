@@ -1,8 +1,8 @@
 # Forcer HTTPS
 http://*    https://:splat   301!
 
-/merci     /merci/index.html   200
-/merci/    /merci/index.html   200
+# Page de remerciement (assure /merci et /merci/)
+ /merci      /merci.html   200
+ /merci/     /merci.html   200
 
-# (optionnel) normaliser /merci sans slash -> /merci/
-# /merci    /merci/   200
+# Laisse Netlify utiliser automatiquement 404.html (pas de catch-all ici)
