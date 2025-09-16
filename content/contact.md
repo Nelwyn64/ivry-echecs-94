@@ -1,7 +1,6 @@
-﻿---
-title: "Contact · Ivry Échecs 94"
 ---
-
+title: Contact · Ivry Échecs 94
+---
 <section class="container">
 <h1 class="section-title">Contact</h1>
 <form name="contact" method="POST" data-netlify="true" action="/merci">
