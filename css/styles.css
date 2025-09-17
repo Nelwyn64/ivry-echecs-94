@@ -445,17 +445,27 @@ a:focus {
 /* =========================================================
    Footer
    ========================================================= */
-.site-footer{
-  margin-top: clamp(16px, 3vw, 40px); /* ↑ donne de l’air par rapport au contenu */
-  width:100%;
-  padding:12px 24px;
-  background:#0a0c10;
-  border-top:1px solid var(--border);
-  text-align:left;
-  font-size:.9rem;
-  color:var(--muted);
+.site-footer {
+  margin-top: clamp(16px, 3vw, 40px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* gauche / droite */
+  align-items: center;
+  padding: 12px 24px;             /* espace identique gauche/droite */
+  background: #0a0c10;
+  border-top: 1px solid var(--border);
+  font-size: .9rem;
+  color: var(--muted);
 }
-.site-footer p{ margin:0; }
+
+.site-footer a {
+  color: #3098DC;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
 
 /* =========================================================
    Images dans le contenu

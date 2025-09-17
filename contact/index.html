@@ -90,21 +90,17 @@
 
 
   <!-- Footer -->
-  <div id="footer"></div>
-  <script>
-    fetch("/footer.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("footer").innerHTML = data;
-      });
+  <footer id="site-footer"></footer>
 
-    // Gestion message de confirmation
-    const form = document.querySelector("form");
-    const confirmation = document.querySelector(".form-confirmation");
-    form.addEventListener("submit", () => {
-  form.style.display = "none";
-  confirmation.hidden = false;
-});
-  </script>
+<script>
+  // Gestion message de confirmation
+  const form = document.querySelector("form");
+  const confirmation = document.querySelector(".form-confirmation");
+  form.addEventListener("submit", () => {
+    form.style.display = "none";
+    confirmation.hidden = false;
+  });
+</script>
+
 </body>
 </html>

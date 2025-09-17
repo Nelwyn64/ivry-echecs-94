@@ -7,6 +7,15 @@ fetch("/header.html")
   })
   .catch(() => { /* silencieux */ });
 
+// Injecter le footer
+fetch("/footer.html")
+  .then(r => r.text())
+  .then(html => {
+    const f = document.getElementById("site-footer");
+    if (f) f.innerHTML = html;
+  })
+  .catch(() => { /* silencieux */ });
+
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("site-content");
   if (!container) return;
