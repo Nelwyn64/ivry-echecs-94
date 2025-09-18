@@ -165,8 +165,7 @@ body.page-index .hero .cta{ margin-top:18px; }
    ========================================================= */
 #site-header, .site-header{
   position:sticky; top:0; z-index:50;
-  background:#0a0c10; color:#fff; border-bottom:1px solid var(--border);
-  display:flex; align-items:center; gap:16px;
+  background:#0a0c10; color:#fff; display:flex; align-items:center; gap:16px;
 }
 .header-inner{ display:flex; align-items:center; gap:16px; }
 .site-logo img{ max-height:72px; display:block; } /* ↑ agrandissement du logo */
