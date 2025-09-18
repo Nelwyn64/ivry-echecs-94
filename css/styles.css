@@ -389,6 +389,7 @@ body.page-contact { --page-bg:url('/assets/bg-contact.jpg'); }
 body.page-adhesion{ --page-bg:url('/assets/bg-adhesion.jpg'); }
 body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
+body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 
 /* =========================================================
    Contenu principal – lisibilité et marges (+ espace avant footer)
