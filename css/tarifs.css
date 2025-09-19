@@ -1,22 +1,21 @@
 /* === Styles spécifiques pour la page Tarifs Ivry === */
 
 .tarifs-ivry {
-  --bg: #ffffff;
-  --fg: #0f172a;          /* slate-900 */
-  --muted: #475569;       /* slate-600 */
-  --accent: #2563eb;      /* blue-600 */
-  --ring: rgba(37, 99, 235, .15);
-  --row: #f8fafc;         /* slate-50 */
-  --border: #e2e8f0;      /* slate-200 */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-  color: var(--fg);
-  background: var(--bg);
+  color: var(--ink);
+  background: var(--surface);        /* semi-transparent comme les cartes */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
 }
 
 .tarifs-ivry h2 {
   font-size: clamp(1.3rem, 1.2rem + 1vw, 1.8rem);
   margin: 0 0 .75rem 0;
   letter-spacing: -0.02em;
+  color: var(--primary);
 }
 
 .tarifs-ivry p.lead {
@@ -29,22 +28,25 @@
   overflow: auto;
   border-radius: 14px;
   border: 1px solid var(--border);
-  box-shadow: 0 6px 20px var(--ring);
-  background: #fff;
+  background: var(--surface);        /* translucide */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
 }
 
 .tarifs-ivry table {
   width: 100%;
   border-collapse: collapse;
   min-width: 720px; /* évite le tassement sur mobile */
+  color: var(--ink);
 }
 
 .tarifs-ivry thead th {
   text-align: left;
   font-weight: 700;
   padding: .9rem 1rem;
-  background: linear-gradient(0deg, #eef2ff, #eff6ff);
-  color: #0b1324;
+  background: rgba(255,255,255,.08);
+  color: var(--ink);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -59,7 +61,7 @@
 }
 
 .tarifs-ivry tbody tr:nth-child(odd) {
-  background: var(--row);
+  background: rgba(255,255,255,.05); /* léger contraste */
 }
 
 .tarifs-ivry .badge {
@@ -68,9 +70,9 @@
   font-size: .78rem;
   font-weight: 600;
   border-radius: 999px;
-  background: #eef2ff;
-  color: var(--accent);
-  border: 1px solid #c7d2fe;
+  background: rgba(255,255,255,.1);
+  color: var(--primary);
+  border: 1px solid var(--border);
 }
 
 .tarifs-ivry .price {
@@ -88,16 +90,19 @@
 /* bloc annexe */
 .tarifs-ivry .annexe {
   margin-top: 1rem;
-  border-left: 4px solid var(--accent);
-  background: #f8fbff;
+  border-left: 4px solid var(--primary);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: .9rem 1rem;
   border-radius: 12px;
-  box-shadow: 0 3px 14px var(--ring);
+  box-shadow: var(--shadow);
 }
 
 .tarifs-ivry .annexe h3 {
   margin: 0 0 .5rem 0;
   font-size: 1.05rem;
+  color: var(--primary);
 }
 
 .tarifs-ivry .annexe ul {
@@ -105,11 +110,6 @@
   padding: 0;
   color: var(--muted);
   font-size: .95rem;
-}
-
-/* mise en avant des prix */
-.tarifs-ivry td.price-col {
-  color: #0b1324;
 }
 
 /* responsive */
