@@ -332,7 +332,7 @@ body.page-index .hero .cta{ margin-top:18px; }
    ======================= */
 @media (min-width: 900px){
   /* Moins de padding vertical */
-  #site-header, .site-header { padding: 8px 0; }
+  #site-header, .site-header { padding: 4px 0; }
 
   /* Réduire le padding latéral du conteneur */
   #site-header .container,
