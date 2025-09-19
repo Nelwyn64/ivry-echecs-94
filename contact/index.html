@@ -5,6 +5,7 @@
   <title>Ivry Échecs – Contact</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="/css/styles.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/contact.css">
 </head>
 <body class="page-contact">
   <!-- Header inline -->
@@ -47,50 +48,35 @@
 </header>
 
   <!-- Contenu -->
-  <main id="site-content" class="site-content">
-    <section class="card">
-      <h1>Contact</h1>
-      <!-- Formulaire Netlify -->
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="#confirmation"
-      >
-        <!-- requis pour Netlify Forms -->
-        <input type="hidden" name="form-name" value="contact" />
-        <!-- anti-spam (ne pas remplir) -->
-        <p class="sr-only" hidden>
-          <label>Ne pas remplir : <input name="bot-field" /></label>
-        </p>
-
-        <div class="form">
-          <label for="nom">Nom</label>
-          <input id="nom" name="nom" type="text" required />
-
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-
-          <button class="btn" type="submit">Envoyer</button>
-        </div>
+  <main class="contact-page">
+  <div class="contact-container">
+    <!-- Colonne principale (formulaire) -->
+    <section class="contact-form">
+      <h2>Contactez-nous</h2>
+      <form action="https://formspree.io/f/xxxxxxx" method="POST">
+        <label>Nom :
+          <input type="text" name="name" required>
+        </label>
+        <label>Email :
+          <input type="email" name="email" required>
+        </label>
+        <label>Message :
+          <textarea name="message" rows="6" required></textarea>
+        </label>
+        <button type="submit">Envoyer</button>
       </form>
-
-      <!-- Message de confirmation -->
-      <div class="form-confirmation" id="confirmation" hidden>
-        <h2>Merci 🙌</h2>
-        <p>Votre message a bien été envoyé. Nous vous répondrons au plus vite.</p>
-      </div>
-
-      <!-- Fallback sans JS : redirection Netlify possible vers une page /merci/ si tu préfères -->
-      <noscript>
-        <p>Merci ! Si le formulaire ne se masque pas, vous pouvez revenir à l’accueil.</p>
-      </noscript>
     </section>
-  </main>
+
+    <!-- Colonne secondaire (infos club) -->
+    <aside class="contact-info">
+      <h3>Informations</h3>
+      <p>Ivry Échecs 94<br>
+         Adresse : …<br>
+         Téléphone : …<br>
+         Mail : …</p>
+    </aside>
+  </div>
+</main>
 
   <!-- Footer (inchangé) -->
   <footer id="site-footer"></footer>
