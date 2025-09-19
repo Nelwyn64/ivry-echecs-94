@@ -7,8 +7,46 @@
   <link href="/css/styles.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body>
-  <header id="site-header"></header>
+<body class="page-agenda">
+  <header class="site-header">
+  <div class="container header-inner">
+    <a class="site-logo" href="/" aria-label="Accueil">
+      <img src="/assets/logo-3.png" alt="Ivry Échecs 94" loading="lazy" />
+    </a>
+    <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span class="sr-only">Menu</span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation Principale">
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li class="has-submenu">
+          <a href="/about/">Le Club</a>
+          <ul class="submenu">
+            <li><a href="/about/">Présentation</a></li>
+            <li><a href="/about/equipe/">Équipe</a></li>
+            <li><a href="/about/histoire/">Histoire</a></li>
+          </ul>
+        </li>
+        <li class="has-submenu">
+          <a href="/agenda/">Agenda</a>
+          <ul class="submenu">
+            <li><a href="/agenda/">Événements</a></li>
+            <li><a href="/agenda/calendrier/">Calendrier</a></li>
+            <li><a href="/agenda/competition/" aria-current="page">Compétitions</a></li>
+          </ul>
+        </li>
+        <li><a href="/tarifs/">Tarifs</a></li>
+        <li><a href="/adhesion/">Adhésion</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/liens-utiles/">Liens utiles</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
   <main id="site-content" class="site-content"></main>
   <footer id="site-footer"></footer>
   <script src="/js/include.js"></script>

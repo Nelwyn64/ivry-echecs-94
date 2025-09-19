@@ -1,40 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>
-    Partenaires · Ivry Échecs 94
-  </title>
+  <title>Partenaires · Ivry Échecs 94</title>
   <meta name="robots" content="index,follow" />
 
   <!-- Feuilles de style -->
-  <link rel="stylesheet" href="/css/typography.css">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <!-- Si tu as un fichier /css/typography.css, laisse la ligne suivante ; sinon supprime-la -->
+  <link rel="stylesheet" href="/css/typography.css" />
 
   <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body class="page-about">
-
-  <!-- Header -->
-  <div id="header"></div>
-<script>
-  fetch("/header.html")
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-    });
-</script>
+  <!-- Header inline -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="site-logo" href="/" aria-label="Accueil">
+        <img src="/assets/logo-3.png" alt="Ivry Échecs 94" loading="lazy" />
+      </a>
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav id="site-nav" class="site-nav" role="navigation" aria-label="Navigation Principale">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li class="has-submenu">
+            <a href="/about/">Le Club</a>
+            <ul class="submenu">
+              <li><a href="/about/">Présentation</a></li>
+              <li><a href="/about/equipe/">Équipe</a></li>
+              <li><a href="/about/histoire/">Histoire</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="/agenda/">Agenda</a>
+            <ul class="submenu">
+              <li><a href="/agenda/">Événements</a></li>
+              <li><a href="/agenda/calendrier/">Calendrier</a></li>
+              <li><a href="/agenda/competition/">Compétitions</a></li>
+            </ul>
+          </li>
+          <li><a href="/tarifs/">Tarifs</a></li>
+          <li><a href="/adhesion/">Adhésion</a></li>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href="/liens-utiles/">Liens utiles</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <!-- Contenu -->
   <main id="content" class="site-content">
     <h1 id="partenaires-du-club">Partenaires du club</h1>
-<p>Contenu en construction…</p>
-
+    <p>Contenu en construction…</p>
   </main>
 
-  <!-- Footer -->
+  <!-- Footer (inchangé, si tu veux je peux aussi l’intégrer inline) -->
   <footer id="site-footer"></footer>
 
   <!-- JS -->
