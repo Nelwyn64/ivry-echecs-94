@@ -168,7 +168,20 @@ body.page-index .hero .cta{ margin-top:18px; }
   background:#0a0c10; color:#fff; display:flex; align-items:center; gap:16px;
 }
 .header-inner{ display:flex; align-items:center; gap:16px; }
-.site-logo img{ max-height:72px; display:block; } /* ↑ agrandissement du logo */
+
+/* Logo ajusté */
+.site-logo {
+  flex: 0 0 auto;        /* garde sa taille */
+  margin-left: 20px;     /* espace avec le bord gauche */
+  margin-right: 24px;    /* espace fixe avant les boutons */
+}
+
+.site-logo img {
+  max-height: 100px;     /* ↑ agrandissement du logo */
+  width: auto;
+  display: block;
+}
+
 .logo{ margin-left:0; }
 
 /* Correction centrage header */
@@ -183,7 +196,6 @@ body.page-index .hero .cta{ margin-top:18px; }
   align-items: center;
   justify-content: space-between; /* logo à gauche, nav équilibrée */
 }
-.site-logo { margin-right: 20px; } /* espace logo / menu */
 
 /* Nav */
 #site-header nav, .site-header nav, .site-nav{
