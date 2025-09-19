@@ -19,13 +19,13 @@ cover: ""
       <tbody>
         <tr>
           <td><span class="badge">B (Loisir)</span></td>
-          <td class="price-col"><span class="price">… €</span></td>
-          <td class="price-col"><span class="price">… €</span></td>
+          <td class="price-col"><span class="price">100 €</span></td>
+          <td class="price-col"><span class="price">140 €</span></td>
         </tr>
         <tr>
           <td><span class="badge">A (Compétition)</span></td>
-          <td class="price-col"><span class="price">… €</span></td>
-          <td class="price-col"><span class="price">… €</span></td>
+          <td class="price-col"><span class="price">120 €</span></td>
+          <td class="price-col"><span class="price">180 €</span></td>
         </tr>
       </tbody>
     </table>
