@@ -1,3 +1,8 @@
+// ===============================
+// include.js – Ivry Échecs 94
+// Charge header/footer et le contenu Markdown (HTML autorisé)
+// ===============================
+
 // Injecter le header
 fetch("/header.html")
   .then(r => r.text())
@@ -33,6 +38,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const path = rawPath.replace(/\.html$/, "");                  // supprime ".html"
   const contentFile = "/content" + (path || "/index") + ".md";
 
+  // ✅ Configurer Marked pour autoriser le HTML dans le Markdown
+  // (pas de sanitation, pas de mangle, pas d'IDs auto)
+  if (typeof marked?.setOptions === "function") {
+    marked.setOptions({
+      gfm: true,
+      breaks: false,
+      mangle: false,
+      headerIds: false
+    });
+  }
+
   fetch(contentFile)
     .then(r => {
       if (!r.ok) throw new Error("Not found");
@@ -57,16 +73,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // ✅ Config Marked pour autoriser le HTML dans le Markdown
-      marked.setOptions({
-        gfm: true,
-        breaks: false,
-        mangle: false,       // ne pas corrompre les emails/liens
-        headerIds: false,    // pas de id auto sur titres
-      });
-
-      // Convertit le MD -> HTML
-      const html = marked.parse(md);
+      // Convertit le MD -> HTML (HTML brut autorisé)
+      const html = (typeof marked?.parse === "function")
+        ? marked.parse(md, { gfm: true, breaks: false, mangle: false, headerIds: false })
+        : md; // fallback trivial si marked absent
 
       // Optionnel: cover si défini dans le front matter
       if (meta.cover) {
@@ -94,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         old.replaceWith(s);
       });
 
-      // Accessibilité & perfs basiques
+      // Accessibilité & perfs basiques sur les images
       container.querySelectorAll("img").forEach(img => {
         if (!img.getAttribute("alt")) img.setAttribute("alt", "");
         img.setAttribute("loading", "lazy");
