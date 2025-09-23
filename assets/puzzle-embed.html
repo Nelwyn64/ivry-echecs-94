@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Problème du jour (local)</title>
+  <style>
+    :root{
+      --bg:#0d0f14; --ink:#fff; --surface:#12151c;
+      --card:#1a1f2b; --accent:#fd353c; --primary:#f4e38b;
+    }
+    html,body{height:100%;margin:0}
+    body{
+      background:transparent; color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .card{
+      width: 520px; max-width: 100%;
+      margin: 0 auto; background: rgba(10,12,16,.85);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      padding: 12px;
+    }
+    h3{margin:6px 0 12px; font-size:1rem; color:var(--primary); text-align:center;}
+    #board{ width: 480px; max-width: calc(100% - 16px); margin: 0 auto 10px; }
+    .meta{font-size:.9rem; opacity:.9; text-align:center; margin-bottom:8px;}
+    .btns{display:flex; gap:8px; justify-content:center; margin:8px 0 6px;}
+    button{
+      background:#333; color:#fff; border:0; border-radius:8px; padding:.5rem .8rem; cursor:pointer;
+    }
+    button:hover{background:#444;}
+  </style>
+  <!-- chessboard.js + chess.js depuis unpkg (léger, fiable) -->
+  <link rel="stylesheet" href="https://unpkg.com/chessboard-js@1.0.0/dist/chessboard-1.0.0.min.css">
+  <script src="https://unpkg.com/chess.js@0.13.4/chess.min.js"></script>
+  <script src="https://unpkg.com/chessboard-js@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h3>Problème (exemple local) — Trait aux Blancs</h3>
+    <div id="board"></div>
+    <div class="meta" id="status">Trouver le meilleur coup.</div>
+    <div class="btns">
+      <button id="reset">Réinitialiser</button>
+      <button id="hint">Indice</button>
+      <button id="solution">Solution</button>
+    </div>
+  </div>
+
+  <script>
+    // Position d’exemple (mate en 1) — tu peux changer le FEN si tu veux
+    // Exemple: position simple: rnb1kbnr/pppp1ppp/8/4p3/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq - 0 1
+    const FEN = "r1bq1b1r/ppp2ppp/2npk3/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQ1RK1 w - - 0 8";
+    const solutionMoves = ["d2-d4"]; // liste SAN/“from-to” simplifiée pour l’exemple
+
+    const game = new Chess(FEN);
+    const board = Chessboard('board', {
+      position: game.fen(),
+      draggable: true,
+      moveSpeed: 200,
+      pieceTheme: 'https://unpkg.com/chessboard-js@1.0.0/img/chesspieces/wikipedia/{piece}.png',
+      onDrop: (source, target) => {
+        const move = game.move({ from: source, to: target, promotion: 'q' });
+        if (move === null) return 'snapback';
+        updateStatus();
+      },
+      onSnapEnd: () => {
+        board.position(game.fen());
+      }
+    });
+
+    function updateStatus(msg){
+      const el = document.getElementById('status');
+      if (msg) { el.textContent = msg; return; }
+      el.textContent = (game.turn() === 'w' ? "Trait aux Blancs." : "Trait aux Noirs.");
+    }
+    updateStatus();
+
+    document.getElementById('reset').addEventListener('click', () => {
+      game.load(FEN); board.position(FEN); updateStatus("Réinitialisé.");
+    });
+
+    document.getElementById('hint').addEventListener('click', () => {
+      if (solutionMoves && solutionMoves.length){
+        updateStatus("Indice : essaye " + solutionMoves[0]);
+      } else {
+        updateStatus("Pas d'indice disponible.");
+      }
+    });
+
+    document.getElementById('solution').addEventListener('click', () => {
+      if (!solutionMoves || !solutionMoves.length) return;
+      // Joue la 1re solution (format from-to pour la démo)
+      const mv = solutionMoves[0];
+      const [from, to] = mv.split('-');
+      const m = game.move({from, to, promotion:'q'});
+      if (m) { board.position(game.fen()); updateStatus("Solution jouée : " + from + "–" + to); }
+    });
+
+    // Réactivité
+    window.addEventListener('resize', () => board.resize());
+  </script>
+</body>
+</html>

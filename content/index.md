@@ -16,11 +16,10 @@ cover: ""
 
     <div class="hero-right">
       <iframe
-        src="https://lichess.org/training/frame?theme=wood&bg=dark"
-        title="Problème du jour Lichess"
-        allowtransparency="true"
-        frameborder="0">
-      </iframe>
+  src="/assets/puzzle-embed.html"
+  title="Problème (local)"
+  style="width:100%;max-width:520px;height:520px;border:0;border-radius:12px;overflow:hidden">
+</iframe>
 
       <!-- Fallback si l’iframe est bloquée -->
       <p class="lichess-fallback">
