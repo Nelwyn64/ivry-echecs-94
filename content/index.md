@@ -15,20 +15,20 @@ cover: ""
     </div>
 
     <div class="hero-right">
-      <iframe
-  src="/assets/puzzle-embed.html"
-  title="Problème (local)"
-  style="width:100%;max-width:520px;height:520px;border:0;border-radius:12px;overflow:hidden">
-</iframe>
+  <iframe
+    src="/assets/puzzle-embed.html"
+    title="Problème (local)"
+    style="width:100%;max-width:520px;height:520px;border:0;border-radius:12px;overflow:hidden">
+  </iframe>
 
-      <!-- Fallback si l’iframe est bloquée -->
-      <p class="lichess-fallback">
-        Si le diagramme ne s’affiche pas, ouvrez-le ici :
-        <a href="https://lichess.org/training/daily?theme=wood&bg=dark" target="_blank" rel="noopener">
-          Problème du jour sur Lichess
-        </a>.
-      </p>
-    </div>
+  <!-- Fallback si l’iframe est bloquée -->
+  <p class="lichess-fallback">
+    Si le diagramme ne s’affiche pas, ouvrez-le ici :
+    <a href="https://lichess.org/training/daily?theme=wood&bg=dark" rel="noopener">
+      Problème du jour sur Lichess
+    </a>.
+  </p>
+</div>
   </div>
 </section>
 

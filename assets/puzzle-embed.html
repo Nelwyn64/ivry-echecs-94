@@ -3,43 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Problème du jour (local)</title>
+  <title>Problème (local, autonome)</title>
   <style>
     :root{
       --bg:#0d0f14; --ink:#fff; --surface:#12151c;
-      --card:#1a1f2b; --accent:#fd353c; --primary:#f4e38b;
+      --card:rgba(10,12,16,.85); --accent:#fd353c; --primary:#f4e38b;
+      --light:#f0d9b5; --dark:#b58863; --hi:#f6f77a;
     }
     html,body{height:100%;margin:0}
-    body{
-      background:transparent; color:var(--ink);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    }
+    body{background:transparent;color:var(--ink);font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}
     .card{
-      width: 520px; max-width: 100%;
-      margin: 0 auto; background: rgba(10,12,16,.85);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      padding: 12px;
+      width:520px;max-width:100%;margin:0 auto;
+      background:var(--card);border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:12px;
     }
-    h3{margin:6px 0 12px; font-size:1rem; color:var(--primary); text-align:center;}
-    #board{ width: 480px; max-width: calc(100% - 16px); margin: 0 auto 10px; }
-    .meta{font-size:.9rem; opacity:.9; text-align:center; margin-bottom:8px;}
-    .btns{display:flex; gap:8px; justify-content:center; margin:8px 0 6px;}
+    h3{margin:6px 0 12px;font-size:1rem;color:var(--primary);text-align:center}
+    .meta{font-size:.9rem;opacity:.9;text-align:center;margin:6px 0 10px}
+    .board{
+      width:480px;max-width:calc(100% - 16px);aspect-ratio:1/1;
+      margin:0 auto 10px;display:grid;grid-template-columns:repeat(8,1fr);
+      border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.1)
+    }
+    .sq{display:flex;align-items:center;justify-content:center;font-size:calc(4.5vw + 12px);line-height:1}
+    /* Ajuste la taille sur grands écrans */
+    @media (min-width:520px){ .sq{font-size:56px} }
+    .light{background:var(--light)} .dark{background:var(--dark)}
+    .hi{ outline:3px solid var(--hi) }
+    .piece.white{color:#ffffffcc;text-shadow:0 2px 0 #00000040}
+    .piece.black{color:#111111e0;text-shadow:0 1px 0 #ffffff30}
+    .btns{display:flex;gap:8px;justify-content:center;margin:8px 0 6px}
     button{
-      background:#333; color:#fff; border:0; border-radius:8px; padding:.5rem .8rem; cursor:pointer;
+      background:#333;color:#fff;border:0;border-radius:8px;padding:.5rem .8rem;cursor:pointer
     }
-    button:hover{background:#444;}
+    button:hover{background:#444}
   </style>
-  <!-- chessboard.js + chess.js depuis unpkg (léger, fiable) -->
-  <link rel="stylesheet" href="https://unpkg.com/chessboard-js@1.0.0/dist/chessboard-1.0.0.min.css">
-  <script src="https://unpkg.com/chess.js@0.13.4/chess.min.js"></script>
-  <script src="https://unpkg.com/chessboard-js@1.0.0/dist/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
   <div class="card">
     <h3>Problème (exemple local) — Trait aux Blancs</h3>
-    <div id="board"></div>
     <div class="meta" id="status">Trouver le meilleur coup.</div>
+    <div id="board" class="board" aria-label="échiquier"></div>
     <div class="btns">
       <button id="reset">Réinitialiser</button>
       <button id="hint">Indice</button>
@@ -48,57 +51,99 @@
   </div>
 
   <script>
-    // Position d’exemple (mate en 1) — tu peux changer le FEN si tu veux
-    // Exemple: position simple: rnb1kbnr/pppp1ppp/8/4p3/3P4/5N2/PPP1PPPP/RNBQKB1R w KQkq - 0 1
+    // =========================
+    //  Board autonome (sans CDN)
+    // =========================
+
+    // FEN d'exemple (position agréable, trait aux Blancs)
+    // Tu peux remplacer par la position que tu veux
     const FEN = "r1bq1b1r/ppp2ppp/2npk3/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQ1RK1 w - - 0 8";
-    const solutionMoves = ["d2-d4"]; // liste SAN/“from-to” simplifiée pour l’exemple
 
-    const game = new Chess(FEN);
-    const board = Chessboard('board', {
-      position: game.fen(),
-      draggable: true,
-      moveSpeed: 200,
-      pieceTheme: 'https://unpkg.com/chessboard-js@1.0.0/img/chesspieces/wikipedia/{piece}.png',
-      onDrop: (source, target) => {
-        const move = game.move({ from: source, to: target, promotion: 'q' });
-        if (move === null) return 'snapback';
-        updateStatus();
-      },
-      onSnapEnd: () => {
-        board.position(game.fen());
-      }
-    });
+    // « Solution » très simple pour la démo (from-to en coordonnées)
+    // ex: d1-d5 signifie déplacer la pièce de d1 vers d5
+    const solution = { from: "d1", to: "d5", hint: "Regarde la dame blanche sur d1…" };
 
-    function updateStatus(msg){
-      const el = document.getElementById('status');
-      if (msg) { el.textContent = msg; return; }
-      el.textContent = (game.turn() === 'w' ? "Trait aux Blancs." : "Trait aux Noirs.");
+    const boardEl = document.getElementById("board");
+    const statusEl = document.getElementById("status");
+
+    // Mapping FEN -> Unicode (pièces)
+    const glyph = {
+      p: "♟", r: "♜", n: "♞", b: "♝", q: "♛", k: "♚",
+      P: "♙", R: "♖", N: "♘", B: "♗", Q: "♕", K: "♔",
+    };
+
+    function algebraic(col, row){ return "abcdefgh"[col] + (8-row); }
+
+    function parseFEN(fen){
+      const [placement] = fen.split(" ");
+      const rows = placement.split("/");
+      const pieces = [];
+      rows.forEach((rowStr, r) => {
+        let c = 0;
+        for (const ch of rowStr){
+          if (/\d/.test(ch)) { c += parseInt(ch,10); }
+          else {
+            pieces.push({ col: c, row: r, ch });
+            c += 1;
+          }
+        }
+      });
+      return pieces;
     }
-    updateStatus();
 
-    document.getElementById('reset').addEventListener('click', () => {
-      game.load(FEN); board.position(FEN); updateStatus("Réinitialisé.");
-    });
-
-    document.getElementById('hint').addEventListener('click', () => {
-      if (solutionMoves && solutionMoves.length){
-        updateStatus("Indice : essaye " + solutionMoves[0]);
-      } else {
-        updateStatus("Pas d'indice disponible.");
+    function renderBoard(fen){
+      boardEl.innerHTML = "";
+      const pieces = parseFEN(fen);
+      for (let r=0; r<8; r++){
+        for (let c=0; c<8; c++){
+          const light = (r + c) % 2 === 0;
+          const cell = document.createElement("div");
+          cell.className = "sq " + (light ? "light" : "dark");
+          cell.dataset.square = algebraic(c, r);
+          const p = pieces.find(p => p.col === c && p.row === r);
+          if (p){
+            const span = document.createElement("span");
+            span.className = "piece " + (p.ch === p.ch.toUpperCase() ? "white" : "black");
+            span.textContent = glyph[p.ch] || "";
+            cell.appendChild(span);
+          }
+          boardEl.appendChild(cell);
+        }
       }
-    });
+    }
 
-    document.getElementById('solution').addEventListener('click', () => {
-      if (!solutionMoves || !solutionMoves.length) return;
-      // Joue la 1re solution (format from-to pour la démo)
-      const mv = solutionMoves[0];
-      const [from, to] = mv.split('-');
-      const m = game.move({from, to, promotion:'q'});
-      if (m) { board.position(game.fen()); updateStatus("Solution jouée : " + from + "–" + to); }
-    });
+    function clearHi(){
+      boardEl.querySelectorAll(".hi").forEach(el => el.classList.remove("hi"));
+    }
 
-    // Réactivité
-    window.addEventListener('resize', () => board.resize());
+    function showHint(){
+      clearHi();
+      if (!solution?.from) return;
+      const fromEl = boardEl.querySelector(`[data-square="${solution.from}"]`);
+      if (fromEl) fromEl.classList.add("hi");
+      statusEl.textContent = solution?.hint || "Indice affiché.";
+    }
+
+    function showSolution(){
+      clearHi();
+      if (!solution?.from || !solution?.to) return;
+      const fromEl = boardEl.querySelector(`[data-square="${solution.from}"]`);
+      const toEl   = boardEl.querySelector(`[data-square="${solution.to}"]`);
+      if (fromEl) fromEl.classList.add("hi");
+      if (toEl)   toEl.classList.add("hi");
+      statusEl.textContent = `Solution : ${solution.from} → ${solution.to}`;
+    }
+
+    document.getElementById("reset").addEventListener("click", () => {
+      clearHi();
+      renderBoard(FEN);
+      statusEl.textContent = "Réinitialisé. Trouver le meilleur coup.";
+    });
+    document.getElementById("hint").addEventListener("click", showHint);
+    document.getElementById("solution").addEventListener("click", showSolution);
+
+    // Premier rendu
+    renderBoard(FEN);
   </script>
 </body>
 </html>
