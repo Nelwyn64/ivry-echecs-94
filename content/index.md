@@ -16,7 +16,7 @@ cover: ""
 
     <div class="hero-right">
       <iframe
-        src="https://lichess.org/training/daily?theme=wood&bg=dark&embed=1&v=1"
+        src="https://lichess.org/training/frame?theme=wood&bg=dark"
         title="Problème du jour Lichess"
         allowtransparency="true"
         frameborder="0">
