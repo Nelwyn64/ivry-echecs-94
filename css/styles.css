@@ -130,6 +130,20 @@ body.page-index .hero .cta{ margin-top:18px; }
   overflow: hidden;
   box-shadow: var(--shadow);
 }
+/* =========================================================
+   Fallback iframe Lichess
+   ========================================================= */
+.iframe-fallback {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+}
+.iframe-fallback a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 
 /* --------- Buttons -------------------------------------- */
 .btn{

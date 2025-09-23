@@ -12,14 +12,25 @@ cover: ""
         <a class="btn" href="/tarifs/">Voir les tarifs &amp; s’inscrire</a>
         <a class="btn" href="/contact/">Nous contacter</a>
       </div>
+    </div>
+
     <div class="hero-right">
-  <iframe
-    src="https://lichess.org/training/frame?theme=wood&bg=dark"
-    title="Problème du jour Lichess"
-    allowtransparency="true"
-    frameborder="0">
-  </iframe>
-</div>
+      <iframe
+        src="https://lichess.org/training/daily?theme=wood&bg=dark&embed=1&v=1"
+        title="Problème du jour Lichess"
+        allowtransparency="true"
+        frameborder="0">
+      </iframe>
+
+      <!-- Fallback si l’iframe est bloquée -->
+      <p class="lichess-fallback">
+        Si le diagramme ne s’affiche pas, ouvrez-le ici :
+        <a href="https://lichess.org/training/daily?theme=wood&bg=dark" target="_blank" rel="noopener">
+          Problème du jour sur Lichess
+        </a>.
+      </p>
+    </div>
+  </div>
 </section>
 
 <section class="container home-cards">
