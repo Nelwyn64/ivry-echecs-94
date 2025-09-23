@@ -1,6 +1,6 @@
 // ===============================
 // include.js – Ivry Échecs 94
-// Charge header/footer et le contenu Markdown (HTML autorisé)
+// Charge header/footer et le contenu (MD ou HTML)
 // ===============================
 
 // Injecter le header
@@ -33,19 +33,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (skipMd) return;
 
-  // Déduire le fichier Markdown à partir de l’URL
+  // Déduire le fichier de contenu à partir de l’URL
   const rawPath = window.location.pathname.replace(/\/$/, ""); // supprime "/" final
   const path = rawPath.replace(/\.html$/, "");                  // supprime ".html"
   const contentFile = "/content" + (path || "/index") + ".md";
 
-  // ✅ Configurer Marked pour autoriser le HTML dans le Markdown
-  // (pas de sanitation, pas de mangle, pas d'IDs auto)
+  // ✅ Configurer Marked (au cas où on s’en sert)
   if (typeof marked?.setOptions === "function") {
     marked.setOptions({
       gfm: true,
       breaks: false,
       mangle: false,
       headerIds: false
+      // pas de sanitize ici : on gère la sécurité en amont
     });
   }
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return r.text();
     })
     .then(md => {
-      // Front matter léger: entre --- ... ---
+      // ---- Front matter léger: entre --- ... ---
       let meta = {};
       if (md.startsWith("---")) {
         const end = md.indexOf("\n---", 3);
@@ -73,12 +73,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Convertit le MD -> HTML (HTML brut autorisé)
-      const html = (typeof marked?.parse === "function")
-        ? marked.parse(md, { gfm: true, breaks: false, mangle: false, headerIds: false })
-        : md; // fallback trivial si marked absent
+      // ---- Déterminer si le contenu est déjà du HTML
+      const isLikelyHtml =
+        /^\s*<(!doctype|html|section|div|main|header|article|h1|h2|p|iframe)\b/i.test(md);
 
-      // Optionnel: cover si défini dans le front matter
+      // ---- Convertir (ou pas) selon le cas
+      const html = isLikelyHtml
+        ? md                            // on garde le HTML tel quel
+        : (typeof marked?.parse === "function"
+            ? marked.parse(md)          // on convertit le Markdown
+            : md);                      // fallback trivial
+
+      // ---- Optionnel: cover si défini dans le front matter
       if (meta.cover) {
         const figure = document.createElement("figure");
         const img = document.createElement("img");
@@ -90,21 +96,18 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(figure);
       }
 
-      // Injecte le contenu rendu
+      // ---- Injecter le contenu rendu
       container.insertAdjacentHTML("beforeend", html);
 
-      // Ré-exécuter les <script> insérés via innerHTML (nécessaire pour les embeds comme Lichess)
+      // ---- Ré-exécuter les <script> insérés (utile pour certains embeds)
       container.querySelectorAll("script").forEach(old => {
         const s = document.createElement("script");
-        // Copie tous les attributs (src, async, defer, data-*)
         for (const { name, value } of old.attributes) s.setAttribute(name, value);
-        // Copie le code inline si présent
         s.textContent = old.textContent;
-        // Remplace l'ancien script par le nouveau pour déclencher l'exécution
         old.replaceWith(s);
       });
 
-      // Accessibilité & perfs basiques sur les images
+      // ---- Accessibilité & perfs basiques sur les images
       container.querySelectorAll("img").forEach(img => {
         if (!img.getAttribute("alt")) img.setAttribute("alt", "");
         img.setAttribute("loading", "lazy");
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         img.style.margin = "12px auto";
       });
 
-      // Met à jour le <title> si fourni
+      // ---- Mettre à jour le <title> si fourni
       if (meta.title) document.title = meta.title + " – Ivry Échecs";
     })
     .catch(() => {
