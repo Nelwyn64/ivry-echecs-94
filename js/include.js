@@ -74,6 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       container.insertAdjacentHTML("beforeend", html);
 
+// Ré-exécuter les <script> insérés via innerHTML (nécessaire pour les embeds comme Lichess)
+container.querySelectorAll("script").forEach(old => {
+  const s = document.createElement("script");
+  // Copie tous les attributs (src, async, defer, data-*)
+  for (const { name, value } of old.attributes) s.setAttribute(name, value);
+  // Copie le code inline si présent
+  s.textContent = old.textContent;
+  // Remplace l'ancien script par le nouveau pour déclencher l'exécution
+  old.replaceWith(s);
+});
+
       // Accessibilité & perfs basiques
       container.querySelectorAll("img").forEach(img => {
         if (!img.getAttribute("alt")) img.setAttribute("alt", "");

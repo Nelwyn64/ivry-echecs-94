@@ -12,11 +12,14 @@ cover: ""
         <a class="btn" href="/tarifs/">Voir les tarifs &amp; s’inscrire</a>
         <a class="btn" href="/contact/">Nous contacter</a>
       </div>
-    </div>
     <div class="hero-right">
-      <iframe allowtransparency="true" frameborder="0" src="https://lichess.org/training/frame" title="Problème du jour Lichess"></iframe>
-    </div>
-  </div>
+  <iframe
+    src="https://lichess.org/training/frame?theme=wood&bg=dark"
+    title="Problème du jour Lichess"
+    allowtransparency="true"
+    frameborder="0">
+  </iframe>
+</div>
 </section>
 
 <section class="container home-cards">
