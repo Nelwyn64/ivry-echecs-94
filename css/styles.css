@@ -448,7 +448,10 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 /* Le bloc .aside (images) va dans la colonne 2 */
 .site-content > .aside {
   grid-column: 2;
-  align-self: start;     /* colle en haut de la colonne */
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* espace homogène entre les images */
 }
 
 /* Titres / paragraphes / listes (inchangé si tu veux garder tes règles) */
