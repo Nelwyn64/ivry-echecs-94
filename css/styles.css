@@ -609,3 +609,8 @@ body.page-contact .site-content {
   .site-content .content { grid-template-columns: 1fr; }
   .site-content .content > .aside { grid-column: 1; grid-row: auto; }
 }
+/* Page Club : on désactive la grille du conteneur externe,
+   pour laisser la grille interne .content gérer les 2 colonnes */
+body.page-about .site-content {
+  display: block;   /* au lieu du grid global */
+}
