@@ -454,54 +454,65 @@ body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
 body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 
-/* ===== Page Club (about) — grille locale 75/25 alignée en haut ===== */
-body.page-about .club-grid{
-  display:grid;
+/* ===== Page Club : grille 75/25 ===== */
+.site-content {
+  display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); /* 75 / 25 */
   gap: 2rem;
   margin-left: 5%;
   margin-right: 3%;
   padding-top: 2rem;
   padding-bottom: clamp(32px, 6vh, 80px);
-  align-items: start; /* aligne le haut */
   line-height: 1.6;
+
+  /* compactage + aligné en haut */
+  grid-auto-flow: dense;
+  align-items: start;
 }
 
-body.page-about .club-main{ grid-column:1; }
+/* Tout va par défaut dans la colonne texte */
+.site-content > * { grid-column: 1; }
 
-body.page-about .club-aside{
-  grid-column:2;
-  align-self:start;
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-  max-width: min(28vw, 360px); /* pas d’images géantes */
+/* Enlève le gros espace du premier élément si besoin */
+.site-content > :first-child { margin-top: 0 !important; }
+
+/* Colonne droite (images), calée en haut */
+.site-content > .aside {
+  grid-column: 2;
+  grid-row: 1;              /* démarre en haut */
+  align-self: start;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-body.page-about .club-aside img{
-  width:100%;
-  height:auto;
-  border-radius:8px;
+/* Titres / listes (optionnel) */
+.site-content h1,
+.site-content h2,
+.site-content h3 { margin: 1.5rem 0 1rem; line-height: 1.25; }
+.site-content ul { margin: 1rem 0 1rem 1.5rem; }
+.site-content li { margin-bottom: .5rem; }
+
+/* <hr> (optionnel) */
+.site-content hr {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background: rgba(255,255,255,.25);
+  margin: 1.5rem 0;
 }
 
-/* Annule le style inline posé par include.js sur la colonne droite de /about */
-body.page-about .club-aside img{
-  margin: 0 !important;
-}
-body.page-about .club-aside{
-  align-self: start; /* sécurité : reste calé en haut */
-}
-
-
-/* Mobile : 1 colonne */
+/* Responsive : 1 colonne */
 @media (max-width: 900px){
-  body.page-about .club-grid{
-    grid-template-columns:1fr;
-    margin-right:5%;
+  .site-content {
+    grid-template-columns: 1fr;
+    margin-left: 5%;
+    margin-right: 5%;
   }
-  body.page-about .club-aside{
-    grid-column:1;
-    max-width:100%;
+  .site-content > .aside {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 

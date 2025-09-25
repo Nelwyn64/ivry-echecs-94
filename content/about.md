@@ -5,9 +5,6 @@ cover: ""
 
 # Le club
 
-<div class="club-grid">
-  <div class="club-main">
-
 **Ivry Échecs 94 a pour objectifs :**
 
 - Développer la pratique du jeu d’échecs sur Ivry-sur-Seine et le Val-de-Marne.  
@@ -32,10 +29,9 @@ cover: ""
 ℹ️ Certaines rubriques (agenda, compétitions…) sont encore en construction.  
 *Bientôt il y aura plus de coups que de cases vides !*
 
-  </div>
-
-  <div class="club-aside">
-    <img src="/assets/uploads/cavalier-sombrer.png" alt="Cavalier sombre" />
-    <img src="/assets/uploads/roi-sombre.png" alt="Roi sombre" />
-  </div>
+<!-- La colonne de droite : images en “aside”. 
+     Laisser ce bloc APRÈS le texte pour que include.js parse bien le Markdown. -->
+<div class="aside">
+  <img src="/assets/uploads/cavalier-sombrer.png" alt="Cavalier sombre" style="max-width:100%; border-radius:8px; margin-bottom:1rem;" />
+  <img src="/assets/uploads/roi-sombre.png" alt="Roi sombre" style="max-width:100%; border-radius:8px; margin-bottom:1rem;" />
 </div>
