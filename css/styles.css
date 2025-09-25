@@ -484,6 +484,15 @@ body.page-about .club-aside img{
   border-radius:8px;
 }
 
+/* Annule le style inline posé par include.js sur la colonne droite de /about */
+body.page-about .club-aside img{
+  margin: 0 !important;
+}
+body.page-about .club-aside{
+  align-self: start; /* sécurité : reste calé en haut */
+}
+
+
 /* Mobile : 1 colonne */
 @media (max-width: 900px){
   body.page-about .club-grid{
