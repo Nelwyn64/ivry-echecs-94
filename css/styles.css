@@ -454,9 +454,8 @@ body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
 body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 
-/* ===== Page Club : grille 75/25 sur le conteneur .content ===== */
-/* include.js place le HTML généré dans <div class="content"> à l'intérieur de <main class="site-content"> */
-.site-content .content {
+/* ===== Page Club : grille 75/25 ===== */
+.site-content {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); /* 75 / 25 */
   gap: 2rem;
@@ -466,25 +465,21 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   padding-bottom: clamp(32px, 6vh, 80px);
   line-height: 1.6;
 
-  /* pour compacter et aligner en haut */
+  /* compactage + aligné en haut */
   grid-auto-flow: dense;
   align-items: start;
 }
 
-/* Tout le contenu Markdown va en colonne 1 */
-.site-content .content > * {
-  grid-column: 1;
-}
+/* Tout va par défaut dans la colonne texte */
+.site-content > * { grid-column: 1; }
 
-/* Enlève l'espace du premier élément (souvent <h1>) */
-.site-content .content > :first-child {
-  margin-top: 0 !important;
-}
+/* Enlève le gros espace du premier élément si besoin */
+.site-content > :first-child { margin-top: 0 !important; }
 
-/* Colonne droite (images) — même ligne de départ que le texte */
-.site-content .content > .aside {
+/* Colonne droite (images), calée en haut */
+.site-content > .aside {
   grid-column: 2;
-  grid-row: 1;                /* clé pour l'alignement en haut */
+  grid-row: 1;              /* démarre en haut */
   align-self: start;
   width: 100%;
   display: flex;
@@ -492,18 +487,15 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   gap: 1rem;
 }
 
-/* Titres / listes — marges propres (facultatif) */
-.site-content .content h1,
-.site-content .content h2,
-.site-content .content h3 {
-  margin: 1.5rem 0 1rem;
-  line-height: 1.25;
-}
-.site-content .content ul { margin: 1rem 0 1rem 1.5rem; }
-.site-content .content li { margin-bottom: .5rem; }
+/* Titres / listes (optionnel) */
+.site-content h1,
+.site-content h2,
+.site-content h3 { margin: 1.5rem 0 1rem; line-height: 1.25; }
+.site-content ul { margin: 1rem 0 1rem 1.5rem; }
+.site-content li { margin-bottom: .5rem; }
 
-/* <hr> stylé (si utilisé ailleurs) */
-.site-content .content hr {
+/* <hr> (optionnel) */
+.site-content hr {
   width: 100%;
   height: 1px;
   border: none;
@@ -511,18 +503,9 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   margin: 1.5rem 0;
 }
 
-/* Mobile : repasse en 1 colonne proprement */
-@media (max-width: 900px) {
-  .site-content .content {
-    grid-template-columns: 1fr;
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-  .site-content .content > .aside {
-    grid-column: 1;
-    grid-row: auto;           /* l’aside vient sous le texte */
-  }
-}
+/* Responsive : 1 colonne */
+@media (max-width:
+
 
 /* =========================================================
    Liens – couleur uniforme
