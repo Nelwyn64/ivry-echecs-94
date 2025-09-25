@@ -428,6 +428,32 @@ body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
 body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 
+/* =========================================================
+   Logo dans le contenu
+   ========================================================= */
+.content img.logo,
+main img.logo{ max-width:280px; height:auto; display:block; margin:1rem auto; }
+
+/* =========================================================
+   Fonds d’écran par page
+   ========================================================= */
+body[class^="page-"]{
+  --page-bg:none;
+  background-image:linear-gradient(rgba(0,0,0,.89), rgba(0,0,0,.89)), var(--page-bg);
+  background-repeat:no-repeat,no-repeat;
+  background-position:center center, center center;
+  background-attachment:fixed,fixed;
+  background-size:cover,cover;
+}
+body.page-index   { --page-bg:url('/assets/bg-index.jpg'); }
+body.page-about   { --page-bg:url('/assets/bg-about.jpg'); }
+body.page-agenda  { --page-bg:url('/assets/bg-agenda.jpg'); }
+body.page-contact { --page-bg:url('/assets/bg-contact.jpg'); }
+body.page-adhesion{ --page-bg:url('/assets/bg-adhesion.jpg'); }
+body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
+body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
+body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
+
 /* ===== Page Club : grille 75/25 ===== */
 .site-content {
   display: grid;
@@ -438,6 +464,10 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   padding-top: 2rem;
   padding-bottom: clamp(32px, 6vh, 80px);
   line-height: 1.6;
+
+  /* important pour aligner l'aside en haut */
+  grid-auto-flow: dense;
+  align-items: start;
 }
 
 /* Par défaut, tout va dans la colonne texte */
@@ -446,27 +476,12 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 /* Colonne droite (images) */
 .site-content > .aside {
   grid-column: 2;
+  grid-row: 1;              /* démarre tout en haut */
   align-self: start;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-/* Titres / listes (optionnel, juste pour marges propres) */
-.site-content h1,
-.site-content h2,
-.site-content h3 { margin: 1.5rem 0 1rem; line-height: 1.25; }
-.site-content ul { margin: 1rem 0 1rem 1.5rem; }
-.site-content li { margin-bottom: .5rem; }
-
-/* Fix "petit point" : style cohérent des <hr> au cas où d'autres pages en utilisent */
-.site-content hr {
-  width: 100%;
-  height: 1px;
-  border: none;
-  background: rgba(255,255,255,.25);
-  margin: 1.5rem 0;
 }
 
 /* Responsive : 1 colonne sur mobile */
@@ -476,10 +491,11 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
     margin-left: 5%;
     margin-right: 5%;
   }
-  .site-content > .aside { grid-column: 1; }
+  .site-content > .aside {
+    grid-column: 1;
+    grid-row: auto;         /* revient sous le texte */
+  }
 }
-
-
 
 /* =========================================================
    Liens – couleur uniforme
