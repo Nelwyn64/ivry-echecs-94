@@ -454,8 +454,9 @@ body.page-tarifs  { --page-bg:url('/assets/bg-tarifs.jpg'); }
 body.page-ivry  { --page-bg:url('/assets/bg-ivry.jpg'); }
 body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
 
-/* ===== Page Club : grille 75/25 ===== */
-.site-content {
+/* ===== Page Club : grille 75/25 sur le conteneur .content ===== */
+/* include.js place le HTML généré dans <div class="content"> à l'intérieur de <main class="site-content"> */
+.site-content .content {
   display: grid;
   grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); /* 75 / 25 */
   gap: 2rem;
@@ -465,18 +466,25 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   padding-bottom: clamp(32px, 6vh, 80px);
   line-height: 1.6;
 
-  /* important pour aligner l'aside en haut */
+  /* pour compacter et aligner en haut */
   grid-auto-flow: dense;
   align-items: start;
 }
 
-/* Par défaut, tout va dans la colonne texte */
-.site-content > * { grid-column: 1; }
+/* Tout le contenu Markdown va en colonne 1 */
+.site-content .content > * {
+  grid-column: 1;
+}
 
-/* Colonne droite (images) */
-.site-content > .aside {
+/* Enlève l'espace du premier élément (souvent <h1>) */
+.site-content .content > :first-child {
+  margin-top: 0 !important;
+}
+
+/* Colonne droite (images) — même ligne de départ que le texte */
+.site-content .content > .aside {
   grid-column: 2;
-  grid-row: 1;              /* démarre tout en haut */
+  grid-row: 1;                /* clé pour l'alignement en haut */
   align-self: start;
   width: 100%;
   display: flex;
@@ -484,16 +492,35 @@ body.page-cormailles  { --page-bg:url('/assets/bg-cormailles.jpg'); }
   gap: 1rem;
 }
 
-/* Responsive : 1 colonne sur mobile */
+/* Titres / listes — marges propres (facultatif) */
+.site-content .content h1,
+.site-content .content h2,
+.site-content .content h3 {
+  margin: 1.5rem 0 1rem;
+  line-height: 1.25;
+}
+.site-content .content ul { margin: 1rem 0 1rem 1.5rem; }
+.site-content .content li { margin-bottom: .5rem; }
+
+/* <hr> stylé (si utilisé ailleurs) */
+.site-content .content hr {
+  width: 100%;
+  height: 1px;
+  border: none;
+  background: rgba(255,255,255,.25);
+  margin: 1.5rem 0;
+}
+
+/* Mobile : repasse en 1 colonne proprement */
 @media (max-width: 900px) {
-  .site-content {
+  .site-content .content {
     grid-template-columns: 1fr;
     margin-left: 5%;
     margin-right: 5%;
   }
-  .site-content > .aside {
+  .site-content .content > .aside {
     grid-column: 1;
-    grid-row: auto;         /* revient sous le texte */
+    grid-row: auto;           /* l’aside vient sous le texte */
   }
 }
 
